@@ -41,7 +41,7 @@ export default function ProductSortSelector({
       </SelectTrigger>
 
       <SelectContent>
-        {sortOrders.map((s) => (
+        {sortOrders?.map((s) => (
           <SelectItem key={s.value} value={s.value}>
             {s.name}
           </SelectItem>

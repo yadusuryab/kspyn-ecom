@@ -144,7 +144,7 @@ export default async function AskReviewOrderItemsEmail({
               </Row>
             </Section>
             <Section className='border border-solid border-gray-500 rounded-lg p-4 md:p-6 my-4'>
-              {order.items.map((item) => (
+              {order.items?.map((item) => (
                 <Row key={item.product} className='mt-8'>
                   <Column className='w-20'>
                     <Link href={`${SERVER_URL}/product/${item.slug}`}>
@@ -182,7 +182,7 @@ export default async function AskReviewOrderItemsEmail({
                 { name: 'Tax', price: order.taxPrice },
                 { name: 'Shipping', price: order.shippingPrice },
                 { name: 'Total', price: order.totalPrice },
-              ].map(({ name, price }) => (
+              ]?.map(({ name, price }) => (
                 <Row key={name} className='py-1'>
                   <Column align='right'>{name}:</Column>
                   <Column align='right' width={70} className='align-top'>

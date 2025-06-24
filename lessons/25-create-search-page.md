@@ -145,7 +145,7 @@ export default function ProductSortSelector({
       </SelectTrigger>
 
       <SelectContent>
-        {sortOrders.map((s) => (
+        {sortOrders?.map((s) => (
           <SelectItem key={s.value} value={s.value}>
             {s.name}
           </SelectItem>
@@ -261,10 +261,10 @@ export async function getAllTags() {
   return (
     (tags[0]?.uniqueTags
       .sort((a: string, b: string) => a.localeCompare(b))
-      .map((x: string) =>
+      ?.map((x: string) =>
         x
           .split('-')
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          ?.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(' ')
       ) as string[]) || []
   )
@@ -446,7 +446,7 @@ export default async function SearchPage(props: {
                     All
                   </Link>
                 </li>
-                {categories.map((c: string) => (
+                {categories?.map((c: string) => (
                   <li key={c}>
                     <Link
                       className={`${c === category && 'text-primary'}`}
@@ -469,7 +469,7 @@ export default async function SearchPage(props: {
                     All
                   </Link>
                 </li>
-                {prices.map((p) => (
+                {prices?.map((p) => (
                   <li key={p.value}>
                     <Link
                       href={getFilterUrl({ price: p.value, params })}
@@ -518,7 +518,7 @@ export default async function SearchPage(props: {
                     All
                   </Link>
                 </li>
-                {tags.map((t: string) => (
+                {tags?.map((t: string) => (
                   <li key={t}>
                     <Link
                       className={`${toSlug(t) === tag && 'text-primary'}`}
@@ -541,7 +541,7 @@ export default async function SearchPage(props: {
 
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2  lg:grid-cols-3  '>
             {data.products.length === 0 && <div>No product found</div>}
-            {data.products.map((product: IProduct) => (
+            {data.products?.map((product: IProduct) => (
               <ProductCard key={product._id} product={product} />
             ))}
           </div>

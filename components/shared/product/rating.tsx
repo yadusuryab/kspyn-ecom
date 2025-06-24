@@ -17,7 +17,7 @@ export default function Rating({
       className='flex items-center'
       aria-label={`Rating: ${rating} out of 5 stars`}
     >
-      {[...Array(fullStars)].map((_, i) => (
+      {[...Array(fullStars)]?.map((_, i) => (
         <Star
           key={`full-${i}`}
           className={`w-${size} h-${size} fill-primary text-primary`}
@@ -34,7 +34,7 @@ export default function Rating({
           </div>
         </div>
       )}
-      {[...Array(emptyStars)].map((_, i) => (
+      {[...Array(emptyStars)]?.map((_, i) => (
         <Star
           key={`empty-${i}`}
           className={`w-${size} h-${size}  text-primary`}

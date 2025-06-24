@@ -67,13 +67,13 @@ export const generateId = () =>
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const formatError = (error: any): string => {
   if (error.name === 'ZodError') {
-    const fieldErrors = Object.keys(error.errors).map((field) => {
+    const fieldErrors = Object.keys(error.errors)?.map((field) => {
       const errorMessage = error.errors[field].message
       return `${error.errors[field].path}: ${errorMessage}` // field: errorMessage
     })
     return fieldErrors.join('. ')
   } else if (error.name === 'ValidationError') {
-    const fieldErrors = Object.keys(error.errors).map((field) => {
+    const fieldErrors = Object.keys(error.errors)?.map((field) => {
       const errorMessage = error.errors[field].message
       return errorMessage
     })
@@ -95,7 +95,7 @@ export function calculateFutureDate(days: number) {
   return currentDate
 }
 export function getMonthName(yearMonth: string): string {
-  const [year, month] = yearMonth.split('-').map(Number)
+  const [year, month] = yearMonth.split('-')?.map(Number)
   const date = new Date(year, month - 1)
   const monthName = date.toLocaleString('default', { month: 'long' })
   const now = new Date()

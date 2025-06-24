@@ -12,7 +12,7 @@
 -    ? `${date.toLocaleString('default', { month: 'long' })} (ongoing)`
 -    : date.toLocaleString('default', { month: 'long' })
 export function getMonthName(yearMonth: string): string {
-  const [year, month] = yearMonth.split('-').map(Number)
+  const [year, month] = yearMonth.split('-')?.map(Number)
   const date = new Date(year, month - 1)
   const monthName = date.toLocaleString('default', { month: 'long' })
   const now = new Date()
@@ -114,7 +114,7 @@ const SettingNav = () => {
             hash: 'setting-delivery-dates',
             icon: <Package />,
           },
-        ].map((item) => (
+        ]?.map((item) => (
           <Button
             onClick={() => handleScroll(item.hash)}
             key={item.hash}
@@ -177,7 +177,7 @@ export default function CarouselForm({
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='space-y-4'>
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className='flex justify-between gap-1 w-full  '>
               <FormField
                 control={form.control}
@@ -386,7 +386,7 @@ export default function CommonForm({
                       <SelectValue placeholder='Select a color' />
                     </SelectTrigger>
                     <SelectContent>
-                      {COLORS.map((color, index) => (
+                      {COLORS?.map((color, index) => (
                         <SelectItem key={index} value={color}>
                           {color}
                         </SelectItem>
@@ -413,7 +413,7 @@ export default function CommonForm({
                       <SelectValue placeholder='Select a theme' />
                     </SelectTrigger>
                     <SelectContent>
-                      {THEMES.map((theme, index) => (
+                      {THEMES?.map((theme, index) => (
                         <SelectItem key={index} value={theme}>
                           {theme}
                         </SelectItem>
@@ -497,7 +497,7 @@ export default function CurrencyForm({
   const defaultCurrency = watch('defaultCurrency')
 
   useEffect(() => {
-    const validCodes = availableCurrencies.map((lang) => lang.code)
+    const validCodes = availableCurrencies?.map((lang) => lang.code)
     if (!validCodes.includes(defaultCurrency)) {
       setValue('defaultCurrency', '')
     }
@@ -511,7 +511,7 @@ export default function CurrencyForm({
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='space-y-4'>
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className='flex   gap-2'>
               <FormField
                 control={form.control}
@@ -624,7 +624,7 @@ export default function CurrencyForm({
                   <SelectContent>
                     {availableCurrencies
                       ?.filter((x) => x.code)
-                      .map((lang, index) => (
+                      ?.map((lang, index) => (
                         <SelectItem key={index} value={lang.code}>
                           {lang.name} ({lang.code})
                         </SelectItem>
@@ -690,7 +690,7 @@ export default function DeliveryDateForm({
   const defaultDeliveryDate = watch('defaultDeliveryDate')
 
   useEffect(() => {
-    const validCodes = availableDeliveryDates.map((lang) => lang.name)
+    const validCodes = availableDeliveryDates?.map((lang) => lang.name)
     if (!validCodes.includes(defaultDeliveryDate)) {
       setValue('defaultDeliveryDate', '')
     }
@@ -703,7 +703,7 @@ export default function DeliveryDateForm({
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='space-y-4'>
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className='flex gap-2'>
               <FormField
                 control={form.control}
@@ -824,7 +824,7 @@ export default function DeliveryDateForm({
                   <SelectContent>
                     {availableDeliveryDates
                       ?.filter((x) => x.name)
-                      .map((lang, index) => (
+                      ?.map((lang, index) => (
                         <SelectItem key={index} value={lang.name}>
                           {lang.name} ({lang.name})
                         </SelectItem>
@@ -889,7 +889,7 @@ export default function LanguageForm({
   const defaultLanguage = watch('defaultLanguage')
 
   useEffect(() => {
-    const validCodes = availableLanguages.map((lang) => lang.code)
+    const validCodes = availableLanguages?.map((lang) => lang.code)
     if (!validCodes.includes(defaultLanguage)) {
       setValue('defaultLanguage', '')
     }
@@ -903,7 +903,7 @@ export default function LanguageForm({
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='space-y-4'>
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className='flex   gap-2'>
               <FormField
                 control={form.control}
@@ -979,7 +979,7 @@ export default function LanguageForm({
                   <SelectContent>
                     {availableLanguages
                       ?.filter((x) => x.code)
-                      .map((lang, index) => (
+                      ?.map((lang, index) => (
                         <SelectItem key={index} value={lang.code}>
                           {lang.name} ({lang.code})
                         </SelectItem>
@@ -1044,7 +1044,7 @@ export default function PaymentMethodForm({
   const defaultPaymentMethod = watch('defaultPaymentMethod')
 
   useEffect(() => {
-    const validCodes = availablePaymentMethods.map((lang) => lang.name)
+    const validCodes = availablePaymentMethods?.map((lang) => lang.name)
     if (!validCodes.includes(defaultPaymentMethod)) {
       setValue('defaultPaymentMethod', '')
     }
@@ -1058,7 +1058,7 @@ export default function PaymentMethodForm({
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='space-y-4'>
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className='flex   gap-2'>
               <FormField
                 control={form.control}
@@ -1136,7 +1136,7 @@ export default function PaymentMethodForm({
                   <SelectContent>
                     {availablePaymentMethods
                       ?.filter((x) => x.name)
-                      .map((lang, index) => (
+                      ?.map((lang, index) => (
                         <SelectItem key={index} value={lang.name}>
                           {lang.name} ({lang.name})
                         </SelectItem>

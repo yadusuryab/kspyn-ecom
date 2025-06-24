@@ -21,7 +21,7 @@
             x.size === item.size
         )
         if (!exist) return
-        const updatedCartItems = items.map((x) =>
+        const updatedCartItems = items?.map((x) =>
           x.product === item.product &&
           x.color === item.color &&
           x.size === item.size
@@ -109,7 +109,7 @@
                    <CardContent className='p-4'>
                      <div className='flex justify-end border-b mb-4'>Price</div>
 
-                     {items.map((item) => (
+                     {items?.map((item) => (
                        <div
                          key={item.clientId}
                          className='flex flex-col md:flex-row justify-between py-4 border-b gap-4'
@@ -160,7 +160,7 @@
                                <SelectContent position='popper'>
                                  {Array.from({
                                    length: item.countInStock,
-                                 }).map((_, i) => (
+                                 })?.map((_, i) => (
                                    <SelectItem key={i + 1} value={`${i + 1}`}>
                                      {i + 1}
                                    </SelectItem>

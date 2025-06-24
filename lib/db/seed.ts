@@ -35,7 +35,7 @@ const main = async () => {
 
     await Product.deleteMany()
     const createdProducts = await Product.insertMany(
-      products.map((x) => ({ ...x, _id: undefined }))
+      products?.map((x) => ({ ...x, _id: undefined }))
     )
 
     await Review.deleteMany()
@@ -67,8 +67,8 @@ const main = async () => {
       orders.push(
         await generateOrder(
           i,
-          createdUser.map((x) => x._id),
-          createdProducts.map((x) => x._id)
+          createdUser?.map((x) => x._id),
+          createdProducts?.map((x) => x._id)
         )
       )
     }
@@ -150,7 +150,7 @@ const generateOrder = async (
 
   const order = {
     user: users[i % users.length],
-    items: items.map((item) => ({
+    items: items?.map((item) => ({
       ...item,
       product: item.product,
     })),

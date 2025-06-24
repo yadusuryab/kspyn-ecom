@@ -71,7 +71,7 @@ const SettingNav = () => {
             hash: 'setting-delivery-dates',
             icon: <Package />,
           },
-        ].map((item) => (
+        ]?.map((item) => (
           <Button
             onClick={() => handleScroll(item.hash)}
             key={item.hash}

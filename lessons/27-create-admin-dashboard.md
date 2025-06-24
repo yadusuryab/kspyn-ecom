@@ -293,7 +293,7 @@ export function AdminNav({
       )}
       {...props}
     >
-      {links.map((item) => (
+      {links?.map((item) => (
         <Link
           key={item.href}
           href={item.href}
@@ -409,15 +409,15 @@ export default function TableChart({
   labelType = 'month',
   data = [],
 }: TableChartProps) {
-  const max = Math.max(...data.map((item) => item.value))
-  const dataWithPercentage = data.map((x) => ({
+  const max = Math.max(...data?.map((item) => item.value))
+  const dataWithPercentage = data?.map((x) => ({
     ...x,
     label: labelType === 'month' ? getMonthName(x.label) : x.label,
     percentage: Math.round((x.value / max) * 100),
   }))
   return (
     <div className='space-y-3'>
-      {dataWithPercentage.map(({ label, id, value, image, percentage }) => (
+      {dataWithPercentage?.map(({ label, id, value, image, percentage }) => (
         <div
           key={label}
           className='grid grid-cols-[100px_1fr_80px] md:grid-cols-[250px_1fr_80px] gap-2 space-y-4  '
@@ -677,7 +677,7 @@ export default function SalesCategoryPieChart({ data }: { data: any[] }) {
           labelLine={false}
           label={renderCustomizedLabel}
         >
-          {data.map((entry, index) => (
+          {data?.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
               fill={`hsl(${cssColors['--primary']})`}
@@ -752,7 +752,7 @@ export default function OverviewReport() {
         </div>
         {/* First Row */}
         <div className='flex gap-4'>
-          {[...Array(4)].map((_, index) => (
+          {[...Array(4)]?.map((_, index) => (
             <Skeleton key={index} className='h-36 w-full' />
           ))}
         </div>
@@ -764,14 +764,14 @@ export default function OverviewReport() {
 
         {/* Third Row */}
         <div className='flex gap-4'>
-          {[...Array(2)].map((_, index) => (
+          {[...Array(2)]?.map((_, index) => (
             <Skeleton key={index} className='h-60 w-full' />
           ))}
         </div>
 
         {/* Fourth Row */}
         <div className='flex gap-4'>
-          {[...Array(2)].map((_, index) => (
+          {[...Array(2)]?.map((_, index) => (
             <Skeleton key={index} className='h-60 w-full' />
           ))}
         </div>
@@ -908,7 +908,7 @@ export default function OverviewReport() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {data.latestOrders.map((order: IOrderList) => (
+                  {data.latestOrders?.map((order: IOrderList) => (
                     <TableRow key={order._id}>
                       <TableCell>
                         {order.user ? order.user.name : 'Deleted User'}

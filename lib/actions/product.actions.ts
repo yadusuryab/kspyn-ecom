@@ -315,10 +315,10 @@ export async function getAllTags() {
   return (
     (tags[0]?.uniqueTags
       .sort((a: string, b: string) => a.localeCompare(b))
-      .map((x: string) =>
+      ?.map((x: string) =>
         x
           .split('-')
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          ?.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(' ')
       ) as string[]) || []
   )

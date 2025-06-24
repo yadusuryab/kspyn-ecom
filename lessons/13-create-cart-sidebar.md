@@ -70,7 +70,7 @@ export default function CartSidebar() {
           </div>
 
           <ScrollArea className='flex-1  w-full'>
-            {items.map((item) => (
+            {items?.map((item) => (
               <div key={item.clientId}>
                 <div className='my-3'>
                   <Link href={`/product/${item.slug}`}>
@@ -98,7 +98,7 @@ export default function CartSidebar() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {Array.from({ length: item.countInStock }).map(
+                        {Array.from({ length: item.countInStock })?.map(
                           (_, i) => (
                             <SelectItem value={(i + 1).toString()} key={i + 1}>
                               {i + 1}

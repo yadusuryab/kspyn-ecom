@@ -30,7 +30,7 @@ export default function ProductSlider({
         className='w-full rounded-3xl'
       >
         <CarouselContent>
-          {products.map((product) => (
+          {products?.map((product) => (
             <CarouselItem
               key={product.slug}
               className={

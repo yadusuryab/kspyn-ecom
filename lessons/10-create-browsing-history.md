@@ -94,8 +94,8 @@
        const fetchProducts = async () => {
          const res = await fetch(
            `/api/products/browsing-history?type=${type}&categories=${products
-             .map((product) => product.category)
-             .join(',')}&ids=${products.map((product) => product.id).join(',')}`
+             ?.map((product) => product.category)
+             .join(',')}&ids=${products?.map((product) => product.id).join(',')}`
          )
          const data = await res.json()
          setData(data)

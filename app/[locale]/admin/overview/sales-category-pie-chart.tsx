@@ -49,7 +49,7 @@ export default function SalesCategoryPieChart({ data }: { data: any[] }) {
           labelLine={false}
           label={renderCustomizedLabel}
         >
-          {data.map((entry, index) => (
+          {data?.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
               fill={`hsl(${cssColors['--primary']})`}

@@ -462,7 +462,7 @@ const CheckoutForm = () => {
                       value={paymentMethod}
                       onValueChange={(value) => setPaymentMethod(value)}
                     >
-                      {availablePaymentMethods.map((pm) => (
+                      {availablePaymentMethods?.map((pm) => (
                         <div key={pm.name} className='flex items-center py-1 '>
                           <RadioGroupItem
                             value={pm.name}
@@ -516,7 +516,7 @@ const CheckoutForm = () => {
                     }
                   </p>
                   <ul>
-                    {items.map((item, _index) => (
+                    {items?.map((item, _index) => (
                       <li key={_index}>
                         {item.name} x {item.quantity} = {item.price}
                       </li>
@@ -560,7 +560,7 @@ const CheckoutForm = () => {
                     </p>
                     <div className='grid md:grid-cols-2 gap-6'>
                       <div>
-                        {items.map((item, _index) => (
+                        {items?.map((item, _index) => (
                           <div key={_index} className='flex gap-4 py-2'>
                             <div className='relative w-16 h-16'>
                               <Image
@@ -597,7 +597,7 @@ const CheckoutForm = () => {
                                 <SelectContent position='popper'>
                                   {Array.from({
                                     length: item.countInStock,
-                                  }).map((_, i) => (
+                                  })?.map((_, i) => (
                                     <SelectItem key={i + 1} value={`${i + 1}`}>
                                       {i + 1}
                                     </SelectItem>
@@ -628,7 +628,7 @@ const CheckoutForm = () => {
                                 )
                               }
                             >
-                              {availableDeliveryDates.map((dd) => (
+                              {availableDeliveryDates?.map((dd) => (
                                 <div key={dd.name} className='flex'>
                                   <RadioGroupItem
                                     value={dd.name}

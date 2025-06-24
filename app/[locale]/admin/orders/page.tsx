@@ -52,7 +52,7 @@ export default async function OrdersPage(props: {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orders.data.map((order: IOrderList) => (
+            {orders.data?.map((order: IOrderList) => (
               <TableRow key={order._id}>
                 <TableCell>{formatId(order._id)}</TableCell>
                 <TableCell>

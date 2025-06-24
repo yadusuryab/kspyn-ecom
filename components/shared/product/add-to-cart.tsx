@@ -73,7 +73,7 @@ export default function AddToCart({
           </SelectValue>
         </SelectTrigger>
         <SelectContent position='popper'>
-          {Array.from({ length: item.countInStock }).map((_, i) => (
+          {Array.from({ length: item.countInStock })?.map((_, i) => (
             <SelectItem key={i + 1} value={`${i + 1}`}>
               {i + 1}
             </SelectItem>

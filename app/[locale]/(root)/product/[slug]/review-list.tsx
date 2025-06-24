@@ -245,7 +245,7 @@ export default function ReviewList({
                                     </SelectTrigger>
                                   </FormControl>
                                   <SelectContent>
-                                    {Array.from({ length: 5 }).map(
+                                    {Array.from({ length: 5 })?.map(
                                       (_, index) => (
                                         <SelectItem
                                           key={index}
@@ -298,7 +298,7 @@ export default function ReviewList({
           </div>
         </div>
         <div className='md:col-span-3 flex flex-col gap-3'>
-          {reviews.map((review: IReviewDetails) => (
+          {reviews?.map((review: IReviewDetails) => (
             <Card key={review._id}>
               <CardHeader>
                 <div className='flex-between'>

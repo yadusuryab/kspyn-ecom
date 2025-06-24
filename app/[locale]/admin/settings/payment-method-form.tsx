@@ -42,7 +42,7 @@ export default function PaymentMethodForm({
   const defaultPaymentMethod = watch('defaultPaymentMethod')
 
   useEffect(() => {
-    const validCodes = availablePaymentMethods.map((lang) => lang.name)
+    const validCodes = availablePaymentMethods?.map((lang) => lang.name)
     if (!validCodes.includes(defaultPaymentMethod)) {
       setValue('defaultPaymentMethod', '')
     }
@@ -56,7 +56,7 @@ export default function PaymentMethodForm({
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='space-y-4'>
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className='flex   gap-2'>
               <FormField
                 control={form.control}
@@ -134,7 +134,7 @@ export default function PaymentMethodForm({
                   <SelectContent>
                     {availablePaymentMethods
                       ?.filter((x) => x.name)
-                      .map((lang, index) => (
+                      ?.map((lang, index) => (
                         <SelectItem key={index} value={lang.name}>
                           {lang.name} ({lang.name})
                         </SelectItem>

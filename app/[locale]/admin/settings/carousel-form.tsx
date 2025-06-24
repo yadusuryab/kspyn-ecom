@@ -37,7 +37,7 @@ export default function CarouselForm({
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='space-y-4'>
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className='flex justify-between gap-1 w-full  '>
               <FormField
                 control={form.control}

@@ -74,7 +74,7 @@
          className='flex items-center'
          aria-label={`Rating: ${rating} out of 5 stars`}
        >
-         {[...Array(fullStars)].map((_, i) => (
+         {[...Array(fullStars)]?.map((_, i) => (
            <Star
              key={`full-${i}`}
              className={`w-${size} h-${size} fill-primary text-primary`}
@@ -91,7 +91,7 @@
              </div>
            </div>
          )}
-         {[...Array(emptyStars)].map((_, i) => (
+         {[...Array(emptyStars)]?.map((_, i) => (
            <Star
              key={`empty-${i}`}
              className={`w-${size} h-${size}  text-primary`}
@@ -383,7 +383,7 @@
            className='w-full'
          >
            <CarouselContent>
-             {products.map((product) => (
+             {products?.map((product) => (
                <CarouselItem
                  key={product.slug}
                  className={

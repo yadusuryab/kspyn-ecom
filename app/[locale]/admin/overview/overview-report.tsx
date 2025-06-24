@@ -60,7 +60,7 @@ export default function OverviewReport() {
         </div>
         {/* First Row */}
         <div className='flex gap-4'>
-          {[...Array(4)].map((_, index) => (
+          {[...Array(4)]?.map((_, index) => (
             <Skeleton key={index} className='h-36 w-full' />
           ))}
         </div>
@@ -72,14 +72,14 @@ export default function OverviewReport() {
 
         {/* Third Row */}
         <div className='flex gap-4'>
-          {[...Array(2)].map((_, index) => (
+          {[...Array(2)]?.map((_, index) => (
             <Skeleton key={index} className='h-60 w-full' />
           ))}
         </div>
 
         {/* Fourth Row */}
         <div className='flex gap-4'>
-          {[...Array(2)].map((_, index) => (
+          {[...Array(2)]?.map((_, index) => (
             <Skeleton key={index} className='h-60 w-full' />
           ))}
         </div>
@@ -223,7 +223,7 @@ export default function OverviewReport() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {data.latestOrders.map((order: IOrderList) => (
+                  {data.latestOrders?.map((order: IOrderList) => (
                     <TableRow key={order._id}>
                       <TableCell>
                         {order.user ? order.user.name : t('Deleted User')}

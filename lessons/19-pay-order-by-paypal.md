@@ -136,7 +136,7 @@ export default async function PurchaseReceiptEmail({
               </Row>
             </Section>
             <Section className='border border-solid border-gray-500 rounded-lg p-4 md:p-6 my-4'>
-              {order.items.map((item) => (
+              {order.items?.map((item) => (
                 <Row key={item.product} className='mt-8'>
                   <Column className='w-20'>
                     <Img
@@ -165,7 +165,7 @@ export default async function PurchaseReceiptEmail({
                 { name: 'Tax', price: order.taxPrice },
                 { name: 'Shipping', price: order.shippingPrice },
                 { name: 'Total', price: order.totalPrice },
-              ].map(({ name, price }) => (
+              ]?.map(({ name, price }) => (
                 <Row key={name} className='py-1'>
                   <Column align='right'>{name}:</Column>
                   <Column align='right' width={70} className='align-top'>
@@ -555,7 +555,7 @@ export default function OrderPaymentForm({
                 {formatDateTime(expectedDeliveryDate).dateOnly}
               </p>
               <ul>
-                {items.map((item) => (
+                {items?.map((item) => (
                   <li key={item.slug}>
                     {item.name} x {item.quantity} = {item.price}
                   </li>
@@ -716,7 +716,7 @@ export default function OrderDetailsForm({
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {items.map((item) => (
+                {items?.map((item) => (
                   <TableRow key={item.slug}>
                     <TableCell>
                       <Link

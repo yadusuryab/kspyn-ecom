@@ -82,7 +82,7 @@ export default function CommonForm({
                       <SelectValue placeholder='Select a color' />
                     </SelectTrigger>
                     <SelectContent>
-                      {COLORS.map((color, index) => (
+                      {COLORS?.map((color, index) => (
                         <SelectItem key={index} value={color}>
                           {color}
                         </SelectItem>
@@ -109,7 +109,7 @@ export default function CommonForm({
                       <SelectValue placeholder='Select a theme' />
                     </SelectTrigger>
                     <SelectContent>
-                      {THEMES.map((theme, index) => (
+                      {THEMES?.map((theme, index) => (
                         <SelectItem key={index} value={theme}>
                           {theme}
                         </SelectItem>

@@ -63,7 +63,7 @@
      return (
        <div className='flex gap-2'>
          <div className='flex flex-col gap-2 mt-8'>
-           {images.map((image, index) => (
+           {images?.map((image, index) => (
              <button
                key={index}
                onClick={() => {
@@ -131,7 +131,7 @@
          {product.colors.length > 0 && (
            <div className='space-x-2 space-y-2'>
              <div>Color:</div>
-             {product.colors.map((x: string) => (
+             {product.colors?.map((x: string) => (
                <Button
                  asChild
                  variant='outline'
@@ -162,7 +162,7 @@
          {product.sizes.length > 0 && (
            <div className='mt-2 space-x-2 space-y-2'>
              <div>Size:</div>
-             {product.sizes.map((x: string) => (
+             {product.sizes?.map((x: string) => (
                <Button
                  asChild
                  variant='outline'

@@ -44,7 +44,7 @@ export default async function Header() {
       <div className='flex items-center px-3 mb-[1px]  border-b'>
         <Sidebar categories={categories} />
         <div className='flex items-center flex-wrap gap-3 overflow-hidden   max-h-[42px]'>
-          {data.headerMenus.map((menu) => (
+          {data.headerMenus?.map((menu) => (
             <Link
               href={menu.href}
               className={`${buttonVariants({variant:'ghost'})} header-button text-md   tracking-tighter text-accent-foreground  !p-2               `}

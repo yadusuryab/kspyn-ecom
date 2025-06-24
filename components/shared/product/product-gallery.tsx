@@ -9,7 +9,7 @@ export default function ProductGallery({ images }: { images: string[] }) {
   return (
     <div className='flex gap-2'>
       <div className='flex flex-col gap-2 mt-8'>
-        {images.map((image, index) => (
+        {images?.map((image, index) => (
           <button
             key={index}
             onClick={() => {

@@ -85,7 +85,7 @@ export default async function Sidebar({
               <h2 className='text-lg font-semibold'>Shop By Department</h2>
             </div>
             <nav className='flex flex-col'>
-              {categories.map((category) => (
+              {categories?.map((category) => (
                 <DrawerClose asChild key={category}>
                   <Link
                     href={`/search?category=${category}`}

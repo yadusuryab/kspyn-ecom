@@ -57,7 +57,7 @@ export default function ThemeSwitcher() {
           value={color.name}
           onValueChange={(value) => setColor(value, true)}
         >
-          {availableColors.map((c) => (
+          {availableColors?.map((c) => (
             <DropdownMenuRadioItem key={c.name} value={c.name}>
               <div
                 style={{ backgroundColor: c.name }}

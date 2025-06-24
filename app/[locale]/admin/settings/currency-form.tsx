@@ -42,7 +42,7 @@ export default function CurrencyForm({
   const defaultCurrency = watch('defaultCurrency')
 
   useEffect(() => {
-    const validCodes = availableCurrencies.map((lang) => lang.code)
+    const validCodes = availableCurrencies?.map((lang) => lang.code)
     if (!validCodes.includes(defaultCurrency)) {
       setValue('defaultCurrency', '')
     }
@@ -56,7 +56,7 @@ export default function CurrencyForm({
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='space-y-4'>
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className='flex   gap-2'>
               <FormField
                 control={form.control}
@@ -169,7 +169,7 @@ export default function CurrencyForm({
                   <SelectContent>
                     {availableCurrencies
                       ?.filter((x) => x.code)
-                      .map((lang, index) => (
+                      ?.map((lang, index) => (
                         <SelectItem key={index} value={lang.code}>
                           {lang.name} ({lang.code})
                         </SelectItem>

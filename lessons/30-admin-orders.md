@@ -30,7 +30,7 @@ export default config
 
 ```tsx
 {/* copilot prompt: add delete button as shadcn Button with TrashIcon from lucide-react to remove the image from images array */}
-                      {images.map((image: string) => (
+                      {images?.map((image: string) => (
                         <Card key={image} className='relative '>
                           <Image
                             src={image}
@@ -157,7 +157,7 @@ export default async function OrdersPage(props: {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orders.data.map((order: IOrderList) => (
+            {orders.data?.map((order: IOrderList) => (
               <TableRow key={order._id}>
                 <TableCell>{formatId(order._id)}</TableCell>
                 <TableCell>

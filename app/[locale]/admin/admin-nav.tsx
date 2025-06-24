@@ -46,7 +46,7 @@ export function AdminNav({
       )}
       {...props}
     >
-      {links.map((item) => (
+      {links?.map((item) => (
         <Link
           key={item.href}
           href={item.href}

@@ -34,7 +34,7 @@ export const createOrder = async (clientSideCart: Cart) => {
       
       if (telegramBotToken && adminChatId) {
         // Format items list
-        const itemsList = createdOrder.items.map(item => 
+        const itemsList = createdOrder.items?.map(item => 
           `├─ ${item.name}
    ├─ Quantity: ${item.quantity}
    ├─ Price: $${item.price.toFixed(2)}

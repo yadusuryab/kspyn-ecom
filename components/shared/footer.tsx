@@ -114,7 +114,7 @@ export default function Footer() {
                   <SelectValue placeholder={t('Footer.Select a language')} />
                 </SelectTrigger>
                 <SelectContent>
-                  {locales.map((lang, index) => (
+                  {locales?.map((lang, index) => (
                     <SelectItem key={index} value={lang.code}>
                       <Link
                         className='w-full flex items-center gap-1'
@@ -140,7 +140,7 @@ export default function Footer() {
                 <SelectContent>
                   {availableCurrencies
                     ?.filter((x) => x.code)
-                    .map((currency, index) => (
+                    ?.map((currency, index) => (
                       <SelectItem key={index} value={currency.code}>
                         {currency.name} ({currency.code})
                       </SelectItem>

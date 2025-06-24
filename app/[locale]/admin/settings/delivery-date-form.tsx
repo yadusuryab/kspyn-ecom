@@ -43,7 +43,7 @@ export default function DeliveryDateForm({
   const defaultDeliveryDate = watch('defaultDeliveryDate')
 
   useEffect(() => {
-    const validCodes = availableDeliveryDates.map((lang) => lang.name)
+    const validCodes = availableDeliveryDates?.map((lang) => lang.name)
     if (!validCodes.includes(defaultDeliveryDate)) {
       setValue('defaultDeliveryDate', '')
     }
@@ -56,7 +56,7 @@ export default function DeliveryDateForm({
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='space-y-4'>
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className='flex gap-2'>
               <FormField
                 control={form.control}
@@ -177,7 +177,7 @@ export default function DeliveryDateForm({
                   <SelectContent>
                     {availableDeliveryDates
                       ?.filter((x) => x.name)
-                      .map((lang, index) => (
+                      ?.map((lang, index) => (
                         <SelectItem key={index} value={lang.name}>
                           {lang.name} ({lang.name})
                         </SelectItem>

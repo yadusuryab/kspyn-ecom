@@ -42,7 +42,7 @@ export default function LanguageForm({
   const defaultLanguage = watch('defaultLanguage')
 
   useEffect(() => {
-    const validCodes = availableLanguages.map((lang) => lang.code)
+    const validCodes = availableLanguages?.map((lang) => lang.code)
     if (!validCodes.includes(defaultLanguage)) {
       setValue('defaultLanguage', '')
     }
@@ -56,7 +56,7 @@ export default function LanguageForm({
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='space-y-4'>
-          {fields.map((field, index) => (
+          {fields?.map((field, index) => (
             <div key={field.id} className='flex   gap-2'>
               <FormField
                 control={form.control}
@@ -132,7 +132,7 @@ export default function LanguageForm({
                   <SelectContent>
                     {availableLanguages
                       ?.filter((x) => x.code)
-                      .map((lang, index) => (
+                      ?.map((lang, index) => (
                         <SelectItem key={index} value={lang.code}>
                           {lang.name} ({lang.code})
                         </SelectItem>

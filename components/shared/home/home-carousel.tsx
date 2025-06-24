@@ -32,7 +32,7 @@ export function HomeCarousel({ items }: { items: ICarousel[] }) {
       onMouseLeave={plugin.current.reset}
     >
       <CarouselContent className=''>
-        {items.map((item) => (
+        {items?.map((item) => (
           <CarouselItem key={item.title}>
             <Link href={item.url}>
               <div className='flex aspect-[16/6] items-center justify-center p-6 relative -m-1'>

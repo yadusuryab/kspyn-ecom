@@ -277,7 +277,7 @@ import { i18n } from '@/i18n-config'
           url: '/search?category=Wrist Watches',
         },
       ],
-      availableLanguages: i18n.locales.map((locale) => ({
+      availableLanguages: i18n.locales?.map((locale) => ({
         code: locale.code,
         name: locale.name,
       })),
@@ -364,7 +364,7 @@ const main = async () => {
 
     await Product.deleteMany()
     const createdProducts = await Product.insertMany(
-      products.map((x) => ({ ...x, _id: undefined }))
+      products?.map((x) => ({ ...x, _id: undefined }))
     )
 
     await Review.deleteMany()
@@ -396,8 +396,8 @@ const main = async () => {
       orders.push(
         await generateOrder(
           i,
-          createdUser.map((x) => x._id),
-          createdProducts.map((x) => x._id)
+          createdUser?.map((x) => x._id),
+          createdProducts?.map((x) => x._id)
         )
       )
     }
@@ -479,7 +479,7 @@ const generateOrder = async (
 
   const order = {
     user: users[i % users.length],
-    items: items.map((item) => ({
+    items: items?.map((item) => ({
       ...item,
       product: item.product,
     })),
@@ -672,7 +672,7 @@ import { createNavigation } from 'next-intl/navigation'
 import { defineRouting } from 'next-intl/routing'
 
 export const routing = defineRouting({
-  locales: i18n.locales.map((locale) => locale.code),
+  locales: i18n.locales?.map((locale) => locale.code),
   defaultLocale: 'en-US',
   localePrefix: 'as-needed',
   pathnames: {
@@ -1605,7 +1605,7 @@ import { i18n } from '@/i18n-config'
                   <SelectValue placeholder={t('Footer.Select a language')} />
                 </SelectTrigger>
                 <SelectContent>
-                  {locales.map((lang, index) => (
+                  {locales?.map((lang, index) => (
                     <SelectItem key={index} value={lang.code}>
                       <Link
                         className='w-full flex items-center gap-1'
@@ -1631,7 +1631,7 @@ import { i18n } from '@/i18n-config'
                 <SelectContent>
                   {availableCurrencies
                     ?.filter((x) => x.code)
-                    .map((currency, index) => (
+                    ?.map((currency, index) => (
                       <SelectItem key={index} value={currency.code}>
                         {currency.name} ({currency.code})
                       </SelectItem>
@@ -1705,7 +1705,7 @@ export default function LanguageSwitcher() {
       <DropdownMenuContent className='w-56'>
         <DropdownMenuLabel>Language</DropdownMenuLabel>
         <DropdownMenuRadioGroup value={locale}>
-          {locales.map((c) => (
+          {locales?.map((c) => (
             <DropdownMenuRadioItem key={c.name} value={c.code}>
               <Link
                 className='w-full flex items-center gap-1'
@@ -1725,7 +1725,7 @@ export default function LanguageSwitcher() {
           value={currency}
           onValueChange={handleCurrencyChange}
         >
-          {availableCurrencies.map((c) => (
+          {availableCurrencies?.map((c) => (
             <DropdownMenuRadioItem key={c.name} value={c.code}>
               {c.symbol} {c.code}
             </DropdownMenuRadioItem>
@@ -2117,7 +2117,7 @@ import { i18n } from '@/i18n-config'
 
 const locales = i18n.locales
   ?.filter((locale) => locale.code !== 'en-US')
-  .map((locale) => locale.code)
+  ?.map((locale) => locale.code)
 
 const isNotInPaths = (s: string) => {
   console.log(locales)
@@ -2887,7 +2887,7 @@ export default async function HomePage() {
         text: t('See More'),
         href: '/search',
       },
-      items: categories.map((category) => ({
+      items: categories?.map((category) => ({
         name: category,
         image: `/images/${toSlug(category)}.jpg`,
         href: `/search?category=${category}`,
@@ -3315,7 +3315,7 @@ export default async function OrdersPage(props: {
                 </TableCell>
               </TableRow>
             )}
-            {orders.data.map((order: IOrder) => (
+            {orders.data?.map((order: IOrder) => (
               <TableRow key={order._id}>
                 <TableCell>
                   <Link href={`/account/orders/${order._id}`}>
@@ -3632,7 +3632,7 @@ export default function CartPage() {
                     {t('Cart.Price')}
                   </div>
 
-                  {items.map((item) => (
+                  {items?.map((item) => (
                     <div
                       key={item.clientId}
                       className='flex flex-col md:flex-row justify-between py-4 border-b gap-4'
@@ -3689,7 +3689,7 @@ export default function CartPage() {
                             <SelectContent position='popper'>
                               {Array.from({
                                 length: item.countInStock,
-                              }).map((_, i) => (
+                              })?.map((_, i) => (
                                 <SelectItem key={i + 1} value={`${i + 1}`}>
                                   {i + 1}
                                 </SelectItem>
@@ -4281,7 +4281,7 @@ export default function ReviewList({
                                     </SelectTrigger>
                                   </FormControl>
                                   <SelectContent>
-                                    {Array.from({ length: 5 }).map(
+                                    {Array.from({ length: 5 })?.map(
                                       (_, index) => (
                                         <SelectItem
                                           key={index}
@@ -4334,7 +4334,7 @@ export default function ReviewList({
           </div>
         </div>
         <div className='md:col-span-3 flex flex-col gap-3'>
-          {reviews.map((review: IReviewDetails) => (
+          {reviews?.map((review: IReviewDetails) => (
             <Card key={review._id}>
               <CardHeader>
                 <div className='flex-between'>
@@ -4559,7 +4559,7 @@ export default async function SearchPage(props: {
                     {t('Search.All')}
                   </Link>
                 </li>
-                {categories.map((c: string) => (
+                {categories?.map((c: string) => (
                   <li key={c}>
                     <Link
                       className={`${c === category && 'text-primary'}`}
@@ -4582,7 +4582,7 @@ export default async function SearchPage(props: {
                     {t('Search.All')}
                   </Link>
                 </li>
-                {prices.map((p) => (
+                {prices?.map((p) => (
                   <li key={p.value}>
                     <Link
                       href={getFilterUrl({ price: p.value, params })}
@@ -4631,7 +4631,7 @@ export default async function SearchPage(props: {
                     {t('Search.All')}
                   </Link>
                 </li>
-                {tags.map((t: string) => (
+                {tags?.map((t: string) => (
                   <li key={t}>
                     <Link
                       className={`${toSlug(t) === tag && 'text-primary'}`}
@@ -4658,7 +4658,7 @@ export default async function SearchPage(props: {
             {data.products.length === 0 && (
               <div>{t('Search.No product found')}</div>
             )}
-            {data.products.map((product: IProduct) => (
+            {data.products?.map((product: IProduct) => (
               <ProductCard key={product._id} product={product} />
             ))}
           </div>
@@ -4723,7 +4723,7 @@ export function AdminNav({
       )}
       {...props}
     >
-      {links.map((item) => (
+      {links?.map((item) => (
         <Link
           key={item.href}
           href={item.href}
@@ -4888,7 +4888,7 @@ export default async function OrdersPage(props: {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orders.data.map((order: IOrderList) => (
+            {orders.data?.map((order: IOrderList) => (
               <TableRow key={order._id}>
                 <TableCell>{formatId(order._id)}</TableCell>
                 <TableCell>
@@ -5081,7 +5081,7 @@ export default function OverviewReport() {
         </div>
         {/* First Row */}
         <div className='flex gap-4'>
-          {[...Array(4)].map((_, index) => (
+          {[...Array(4)]?.map((_, index) => (
             <Skeleton key={index} className='h-36 w-full' />
           ))}
         </div>
@@ -5093,14 +5093,14 @@ export default function OverviewReport() {
 
         {/* Third Row */}
         <div className='flex gap-4'>
-          {[...Array(2)].map((_, index) => (
+          {[...Array(2)]?.map((_, index) => (
             <Skeleton key={index} className='h-60 w-full' />
           ))}
         </div>
 
         {/* Fourth Row */}
         <div className='flex gap-4'>
-          {[...Array(2)].map((_, index) => (
+          {[...Array(2)]?.map((_, index) => (
             <Skeleton key={index} className='h-60 w-full' />
           ))}
         </div>
@@ -5244,7 +5244,7 @@ export default function OverviewReport() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {data.latestOrders.map((order: IOrderList) => (
+                  {data.latestOrders?.map((order: IOrderList) => (
                     <TableRow key={order._id}>
                       <TableCell>
                         {order.user ? order.user.name : t('Deleted User')}
@@ -5438,7 +5438,7 @@ export default function SalesCategoryPieChart({ data }: { data: any[] }) {
           labelLine={false}
           label={renderCustomizedLabel}
         >
-          {data.map((entry, index) => (
+          {data?.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
               fill={`hsl(${cssColors['--primary']})`}
@@ -5499,15 +5499,15 @@ export default function TableChart({
   labelType = 'month',
   data = [],
 }: TableChartProps) {
-  const max = Math.max(...data.map((item) => item.value))
-  const dataWithPercentage = data.map((x) => ({
+  const max = Math.max(...data?.map((item) => item.value))
+  const dataWithPercentage = data?.map((x) => ({
     ...x,
     label: labelType === 'month' ? getMonthName(x.label) : x.label,
     percentage: Math.round((x.value / max) * 100),
   }))
   return (
     <div className='space-y-3'>
-      {dataWithPercentage.map(({ label, id, value, image, percentage }) => (
+      {dataWithPercentage?.map(({ label, id, value, image, percentage }) => (
         <div
           key={label}
           className='grid grid-cols-[100px_1fr_80px] md:grid-cols-[250px_1fr_80px] gap-2 space-y-4  '
@@ -5900,7 +5900,7 @@ const ProductForm = ({
                 <Card>
                   <CardContent className='space-y-2 mt-2 min-h-48'>
                     <div className='flex justify-start items-center space-x-2'>
-                      {images.map((image: string) => (
+                      {images?.map((image: string) => (
                         <Image
                           key={image}
                           src={image}
@@ -6122,7 +6122,7 @@ const ProductList = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data?.products.map((product: IProduct) => (
+              {data?.products?.map((product: IProduct) => (
                 <TableRow key={product._id}>
                   <TableCell>{formatId(product._id)}</TableCell>
                   <TableCell>
@@ -6356,7 +6356,7 @@ const UserEditForm = ({ user }: { user: IUser }) => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {USER_ROLES.map((role) => (
+                    {USER_ROLES?.map((role) => (
                       <SelectItem key={role} value={role}>
                         {role}
                       </SelectItem>
@@ -6441,7 +6441,7 @@ export default async function AdminUser(props: {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {users?.data.map((user: IUser) => (
+            {users?.data?.map((user: IUser) => (
               <TableRow key={user._id}>
                 <TableCell>{formatId(user._id)}</TableCell>
                 <TableCell>{user.name}</TableCell>
@@ -6575,7 +6575,7 @@ export default async function WebPageAdminPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {webPages.map((webPage: IWebPage) => (
+            {webPages?.map((webPage: IWebPage) => (
               <TableRow key={webPage._id}>
                 <TableCell>{formatId(webPage._id)}</TableCell>
                 <TableCell>{webPage.title}</TableCell>
@@ -7066,7 +7066,7 @@ export default function OrderDetailsForm({
                 {formatDateTime(expectedDeliveryDate).dateOnly}
               </p>
               <ul>
-                {items.map((item) => (
+                {items?.map((item) => (
                   <li key={item.slug}>
                     {item.name} x {item.quantity} = {item.price}
                   </li>
@@ -7728,7 +7728,7 @@ const CheckoutForm = () => {
                       value={paymentMethod}
                       onValueChange={(value) => setPaymentMethod(value)}
                     >
-                      {availablePaymentMethods.map((pm) => (
+                      {availablePaymentMethods?.map((pm) => (
                         <div key={pm.name} className='flex items-center py-1 '>
                           <RadioGroupItem
                             value={pm.name}
@@ -7782,7 +7782,7 @@ const CheckoutForm = () => {
                     }
                   </p>
                   <ul>
-                    {items.map((item, _index) => (
+                    {items?.map((item, _index) => (
                       <li key={_index}>
                         {item.name} x {item.quantity} = {item.price}
                       </li>
@@ -7826,7 +7826,7 @@ const CheckoutForm = () => {
                     </p>
                     <div className='grid md:grid-cols-2 gap-6'>
                       <div>
-                        {items.map((item, _index) => (
+                        {items?.map((item, _index) => (
                           <div key={_index} className='flex gap-4 py-2'>
                             <div className='relative w-16 h-16'>
                               <Image
@@ -7863,7 +7863,7 @@ const CheckoutForm = () => {
                                 <SelectContent position='popper'>
                                   {Array.from({
                                     length: item.countInStock,
-                                  }).map((_, i) => (
+                                  })?.map((_, i) => (
                                     <SelectItem key={i + 1} value={`${i + 1}`}>
                                       {i + 1}
                                     </SelectItem>
@@ -7894,7 +7894,7 @@ const CheckoutForm = () => {
                                 )
                               }
                             >
-                              {availableDeliveryDates.map((dd) => (
+                              {availableDeliveryDates?.map((dd) => (
                                 <div key={dd.name} className='flex'>
                                   <RadioGroupItem
                                     value={dd.name}

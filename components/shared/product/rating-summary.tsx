@@ -31,7 +31,7 @@ export default function RatingSummary({
 }: RatingSummaryProps) {
   const t = useTranslations()
   const RatingDistribution = () => {
-    const ratingPercentageDistribution = ratingDistribution.map((x) => ({
+    const ratingPercentageDistribution = ratingDistribution?.map((x) => ({
       ...x,
       percentage: Math.round((x.count / numReviews) * 100),
     }))
@@ -53,7 +53,7 @@ export default function RatingSummary({
         <div className='space-y-3'>
           {ratingPercentageDistribution
             .sort((a, b) => b.rating - a.rating)
-            .map(({ rating, percentage }) => (
+            ?.map(({ rating, percentage }) => (
               <div
                 key={rating}
                 className='grid grid-cols-[50px_1fr_30px] gap-2 items-center'

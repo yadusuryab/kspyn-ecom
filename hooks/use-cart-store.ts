@@ -51,7 +51,7 @@ const useCartStore = create(
         }
 
         const updatedCartItems = existItem
-          ? items.map((x) =>
+          ? items?.map((x) =>
               x.product === item.product &&
               x.color === item.color &&
               x.size === item.size
@@ -90,7 +90,7 @@ const useCartStore = create(
             x.size === item.size
         )
         if (!exist) return
-        const updatedCartItems = items.map((x) =>
+        const updatedCartItems = items?.map((x) =>
           x.product === item.product &&
           x.color === item.color &&
           x.size === item.size

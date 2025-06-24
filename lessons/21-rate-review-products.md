@@ -425,7 +425,7 @@ export default function RatingSummary({
   ratingDistribution = [],
 }: RatingSummaryProps) {
   const RatingDistribution = () => {
-    const ratingPercentageDistribution = ratingDistribution.map((x) => ({
+    const ratingPercentageDistribution = ratingDistribution?.map((x) => ({
       ...x,
       percentage: Math.round((x.count / numReviews) * 100),
     }))
@@ -443,7 +443,7 @@ export default function RatingSummary({
         <div className='space-y-3'>
           {ratingPercentageDistribution
             .sort((a, b) => b.rating - a.rating)
-            .map(({ rating, percentage }) => (
+            ?.map(({ rating, percentage }) => (
               <div
                 key={rating}
                 className='grid grid-cols-[50px_1fr_30px] gap-2 items-center'
@@ -731,7 +731,7 @@ export default function ReviewList({
                                     </SelectTrigger>
                                   </FormControl>
                                   <SelectContent>
-                                    {Array.from({ length: 5 }).map(
+                                    {Array.from({ length: 5 })?.map(
                                       (_, index) => (
                                         <SelectItem
                                           key={index}
@@ -784,7 +784,7 @@ export default function ReviewList({
           </div>
         </div>
         <div className='md:col-span-3 flex flex-col gap-3'>
-          {reviews.map((review: IReviewDetails) => (
+          {reviews?.map((review: IReviewDetails) => (
             <Card key={review._id}>
               <CardHeader>
                 <div className='flex-between'>

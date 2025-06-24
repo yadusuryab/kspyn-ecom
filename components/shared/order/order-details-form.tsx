@@ -96,7 +96,7 @@ export default function OrderDetailsForm({
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {items.map((item) => (
+                {items?.map((item) => (
                   <TableRow key={item.slug}>
                     <TableCell>
                       <Link

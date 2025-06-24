@@ -60,7 +60,7 @@ export default function CartPage() {
                     {t('Cart.Price')}
                   </div>
 
-                  {items.map((item) => (
+                  {items?.map((item) => (
                     <div
                       key={item.clientId}
                       className='flex flex-col md:flex-row justify-between py-4 border-b gap-4'
@@ -117,7 +117,7 @@ export default function CartPage() {
                             <SelectContent position='popper'>
                               {Array.from({
                                 length: item.countInStock,
-                              }).map((_, i) => (
+                              })?.map((_, i) => (
                                 <SelectItem key={i + 1} value={`${i + 1}`}>
                                   {i + 1}
                                 </SelectItem>

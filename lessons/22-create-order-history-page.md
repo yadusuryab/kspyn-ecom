@@ -188,7 +188,7 @@ export default async function OrdersPage(props: {
                 </TableCell>
               </TableRow>
             )}
-            {orders.data.map((order: IOrder) => (
+            {orders.data?.map((order: IOrder) => (
               <TableRow key={order._id}>
                 <TableCell>
                   <Link href={`/account/orders/${order._id}`}>

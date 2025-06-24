@@ -289,7 +289,7 @@ const ProductList = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data?.products.map((product: IProduct) => (
+              {data?.products?.map((product: IProduct) => (
                 <TableRow key={product._id}>
                   <TableCell>{formatId(product._id)}</TableCell>
                   <TableCell>

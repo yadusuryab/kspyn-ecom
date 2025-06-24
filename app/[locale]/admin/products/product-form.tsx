@@ -316,7 +316,7 @@ const ProductForm = ({
                 <Card>
                   <CardContent className='space-y-2 mt-2 min-h-48'>
                     <div className='flex flex-wrap gap-2'>
-                      {images.map((image: string) => (
+                      {images?.map((image: string) => (
                         <div key={image} className='relative'>
                           <Image
                             src={image}
@@ -366,7 +366,7 @@ const ProductForm = ({
               <FormItem className='w-full'>
                 <FormLabel>Colors</FormLabel>
                 <div className='flex flex-wrap gap-2 mb-2'>
-                  {colors.map((color) => (
+                  {colors?.map((color) => (
                     <Badge 
                       key={color} 
                       variant='outline'
@@ -413,7 +413,7 @@ const ProductForm = ({
               <FormItem className='w-full'>
                 <FormLabel>Sizes</FormLabel>
                 <div className='flex flex-wrap gap-2 mb-2'>
-                  {sizes.map((size) => (
+                  {sizes?.map((size) => (
                     <Badge 
                       key={size} 
                       variant='outline'
@@ -460,7 +460,7 @@ const ProductForm = ({
               <FormItem className='w-full'>
                 <FormLabel>Tags</FormLabel>
                 <div className='flex flex-wrap gap-2 mb-2'>
-                  {tags.map((tag) => (
+                  {tags?.map((tag) => (
                     <Badge 
                       key={tag} 
                       variant='outline'

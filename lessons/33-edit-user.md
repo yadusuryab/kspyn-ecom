@@ -172,7 +172,7 @@ const UserEditForm = ({ user }: { user: IUser }) => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {USER_ROLES.map((role) => (
+                    {USER_ROLES?.map((role) => (
                       <SelectItem key={role} value={role}>
                         {role}
                       </SelectItem>

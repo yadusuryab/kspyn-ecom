@@ -178,7 +178,7 @@ export default async function SearchPage(props: {
                     {t('Search.All')}
                   </Link>
                 </li>
-                {categories.map((c: string) => (
+                {categories?.map((c: string) => (
                   <li key={c}>
                     <Link
                       className={`${c === category && 'text-primary'}`}
@@ -201,7 +201,7 @@ export default async function SearchPage(props: {
                     {t('Search.All')}
                   </Link>
                 </li>
-                {prices.map((p) => (
+                {prices?.map((p) => (
                   <li key={p.value}>
                     <Link
                       href={getFilterUrl({ price: p.value, params })}
@@ -250,7 +250,7 @@ export default async function SearchPage(props: {
                     {t('Search.All')}
                   </Link>
                 </li>
-                {tags.map((t: string) => (
+                {tags?.map((t: string) => (
                   <li key={t}>
                     <Link
                       className={`${toSlug(t) === tag && 'text-primary'}`}
@@ -277,7 +277,7 @@ export default async function SearchPage(props: {
             {data.products.length === 0 && (
               <div>{t('Search.No product found')}</div>
             )}
-            {data.products.map((product: IProduct) => (
+            {data.products?.map((product: IProduct) => (
               <ProductCard key={product._id} product={product} />
             ))}
           </div>

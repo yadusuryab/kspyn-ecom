@@ -33,7 +33,7 @@ export default async function Search() {
         </SelectTrigger>
         <SelectContent position="popper">
           <SelectItem value="all">{t("Header.All")}</SelectItem>
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <SelectItem key={category} value={category}>
               {category}
             </SelectItem>

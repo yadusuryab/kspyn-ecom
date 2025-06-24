@@ -152,7 +152,7 @@
            }
 
            const updatedCartItems = existItem
-             ? items.map((x) =>
+             ? items?.map((x) =>
                  x.product === item.product &&
                  x.color === item.color &&
                  x.size === item.size
@@ -260,7 +260,7 @@
              <SelectValue>Quantity: {quantity}</SelectValue>
            </SelectTrigger>
            <SelectContent position='popper'>
-             {Array.from({ length: item.countInStock }).map((_, i) => (
+             {Array.from({ length: item.countInStock })?.map((_, i) => (
                <SelectItem key={i + 1} value={`${i + 1}`}>
                  {i + 1}
                </SelectItem>

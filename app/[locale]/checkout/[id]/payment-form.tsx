@@ -175,7 +175,7 @@ export default function OrderDetailsForm({
                 {formatDateTime(expectedDeliveryDate).dateOnly}
               </p>
               <ul>
-                {items.map((item) => (
+                {items?.map((item) => (
                   <li key={item.slug}>
                     {item.name} x {item.quantity} = {item.price}
                   </li>

@@ -46,7 +46,7 @@ export default function LanguageSwitcher() {
       <DropdownMenuContent className='w-56'>
         <DropdownMenuLabel>Language</DropdownMenuLabel>
         <DropdownMenuRadioGroup value={locale}>
-          {locales.map((c) => (
+          {locales?.map((c) => (
             <DropdownMenuRadioItem key={c.name} value={c.code}>
               <Link
                 className='w-full flex items-center gap-1'
@@ -66,7 +66,7 @@ export default function LanguageSwitcher() {
           value={currency}
           onValueChange={handleCurrencyChange}
         >
-          {availableCurrencies.map((c) => (
+          {availableCurrencies?.map((c) => (
             <DropdownMenuRadioItem key={c.name} value={c.code}>
               {c.symbol} {c.code}
             </DropdownMenuRadioItem>

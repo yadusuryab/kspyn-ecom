@@ -1284,7 +1284,7 @@ We also provide helpful resources such as order tracking, product guides, and FA
           url: '/search?category=Wrist Watches',
         },
       ],
-      availableLanguages: i18n.locales.map((locale) => ({
+      availableLanguages: i18n.locales?.map((locale) => ({
         code: locale.code,
         name: locale.name,
       })),
