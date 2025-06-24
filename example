@@ -1,0 +1,31 @@
+
+NEXT_PUBLIC_APP_NAME=Amazona
+NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js, MongoDB, Shadcn
+NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+
+# Database
+MONGODB_URI= mongodb+srv://yadusurya666:tBWIvsHpJkURpkA4@kspyn-ecom.hhmzfp3.mongodb.net/?retryWrites=true&w=majority&appName=kspyn-ecom
+
+# $ npx auth secret
+AUTH_SECRET=lmfl565f4sf7f*3wsijodaffk,sd
+AUTH_GOOGLE_ID=571928927751-junj5h63menqsprf9bip71pdu4id1cvc.apps.googleusercontent.com
+AUTH_GOOGLE_SECRET=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
+
+RESEND_API_KEY=re_29dVBSDK_NfHsAKy89o261yQLw1tKP7ZC
+SENDER_EMAIL=onboarding@resend.dev
+
+# UPLOADTHING
+UPLOADTHING_TOKEN=eyJhcGlLZXkiOiJza19saXZlXzFmZTg0MGY2MjMxYWY0NGM1NGY2ZDE1Mzc1M2M4NGM0MWY2NDE4NDdhZDVhZjg1ZjNkNjEzZmJhYzM5NWM3YmMiLCJhcHBJZCI6InB2MjF5OHhvcjMiLCJyZWdpb25zIjpbInNlYTEiXX0=
+# PAYPAL
+PAYPAL_API_URL=sffds
+PAYPAL_CLIENT_ID=sffdsfs
+PAYPAL_APP_SECRET=sdfsfsdf
+
+# STRIPE
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=sfdsf
+STRIPE_SECRET_KEY=dfsdgsdlgg
+STRIPE_WEBHOOK_SECRET=dfdmflsdggds
+
+#telegram
+TELEGRAM_BOT_TOKEN=8146284989:AAE_FeM7vZkjGgVmc2H3Cw8d7Jx07HEdb_k
+TELEGRAM_CHAT_ID=5796925427
