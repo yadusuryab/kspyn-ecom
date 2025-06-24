@@ -376,8 +376,8 @@ const main = async () => {
         for (let k = 0; k < ratingDistribution[j].count; k++) {
           x++
           rws.push({
-            ...reviews.filter((x) => x.rating === j + 1)[
-              x % reviews.filter((x) => x.rating === j + 1).length
+            ...reviews?.filter((x) => x.rating === j + 1)[
+              x % reviews?.filter((x) => x.rating === j + 1).length
             ],
             isVerifiedPurchase: true,
             product: createdProducts[i]._id,
@@ -1630,7 +1630,7 @@ import { i18n } from '@/i18n-config'
                 </SelectTrigger>
                 <SelectContent>
                   {availableCurrencies
-                    .filter((x) => x.code)
+                    ?.filter((x) => x.code)
                     .map((currency, index) => (
                       <SelectItem key={index} value={currency.code}>
                         {currency.name} ({currency.code})
@@ -2116,7 +2116,7 @@ import { SENDER_EMAIL, SENDER_NAME } from '@/lib/constants'
 import { i18n } from '@/i18n-config'
 
 const locales = i18n.locales
-  .filter((locale) => locale.code !== 'en-US')
+  ?.filter((locale) => locale.code !== 'en-US')
   .map((locale) => locale.code)
 
 const isNotInPaths = (s: string) => {

@@ -139,7 +139,7 @@ export default function Footer() {
                 </SelectTrigger>
                 <SelectContent>
                   {availableCurrencies
-                    .filter((x) => x.code)
+                    ?.filter((x) => x.code)
                     .map((currency, index) => (
                       <SelectItem key={index} value={currency.code}>
                         {currency.name} ({currency.code})

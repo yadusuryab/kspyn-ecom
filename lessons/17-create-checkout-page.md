@@ -255,7 +255,7 @@ const useCartStore = create(
     removeItem: async (item: OrderItem) => {
 -        const { items } = get().cart
       const { items, shippingAddress } = get().cart
-      const updatedCartItems = items.filter(
+      const updatedCartItems = items?.filter(
         (x) =>
           x.product !== item.product ||
           items: updatedCartItems,

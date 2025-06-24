@@ -131,7 +131,7 @@ export default function LanguageForm({
                   </SelectTrigger>
                   <SelectContent>
                     {availableLanguages
-                      .filter((x) => x.code)
+                      ?.filter((x) => x.code)
                       .map((lang, index) => (
                         <SelectItem key={index} value={lang.code}>
                           {lang.name} ({lang.code})

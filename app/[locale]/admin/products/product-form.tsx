@@ -140,7 +140,7 @@ const ProductForm = ({
   }
 
   const handleRemoveColor = (colorToRemove: string) => {
-    form.setValue('colors', colors.filter(color => color !== colorToRemove))
+    form.setValue('colors', colors?.filter(color => color !== colorToRemove))
   }
 
   const handleAddSize = () => {
@@ -151,7 +151,7 @@ const ProductForm = ({
   }
 
   const handleRemoveSize = (sizeToRemove: string) => {
-    form.setValue('sizes', sizes.filter(size => size !== sizeToRemove))
+    form.setValue('sizes', sizes?.filter(size => size !== sizeToRemove))
   }
 
   const handleAddTag = () => {
@@ -162,11 +162,11 @@ const ProductForm = ({
   }
 
   const handleRemoveTag = (tagToRemove: string) => {
-    form.setValue('tags', tags.filter(tag => tag !== tagToRemove))
+    form.setValue('tags', tags?.filter(tag => tag !== tagToRemove))
   }
 
   const handleRemoveImage = (imageToRemove: string) => {
-    form.setValue('images', images.filter(image => image !== imageToRemove))
+    form.setValue('images', images?.filter(image => image !== imageToRemove))
   }
 
   return (

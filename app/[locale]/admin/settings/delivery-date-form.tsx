@@ -176,7 +176,7 @@ export default function DeliveryDateForm({
                   </SelectTrigger>
                   <SelectContent>
                     {availableDeliveryDates
-                      .filter((x) => x.name)
+                      ?.filter((x) => x.name)
                       .map((lang, index) => (
                         <SelectItem key={index} value={lang.name}>
                           {lang.name} ({lang.name})

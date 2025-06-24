@@ -47,7 +47,7 @@ export default config
                             onClick={() => {
                               form.setValue(
                                 'images',
-                                images.filter((img) => img !== image)
+                                images?.filter((img) => img !== image)
                               )
                             }}
                           >

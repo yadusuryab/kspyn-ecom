@@ -40,7 +40,7 @@
       },
       removeItem: async (item: OrderItem) => {
         const { items } = get().cart
-        const updatedCartItems = items.filter(
+        const updatedCartItems = items?.filter(
           (x) =>
             x.product !== item.product ||
             x.color !== item.color ||

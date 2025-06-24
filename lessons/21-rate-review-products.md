@@ -363,8 +363,8 @@ import Review from './models/review.model'
         for (let k = 0; k < ratingDistribution[j].count; k++) {
           x++
           rws.push({
-            ...reviews.filter((x) => x.rating === j + 1)[
-              x % reviews.filter((x) => x.rating === j + 1).length
+            ...reviews?.filter((x) => x.rating === j + 1)[
+              x % reviews?.filter((x) => x.rating === j + 1).length
             ],
             isVerifiedPurchase: true,
             product: createdProducts[i]._id,
