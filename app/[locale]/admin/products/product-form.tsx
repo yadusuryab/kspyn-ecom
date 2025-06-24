@@ -321,14 +321,14 @@ const ProductForm = ({
                           <Image
                             src={image}
                             alt='product image'
-                            className='w-20 h-20 object-cover object-center rounded-sm'
+                            className='w-20 h-20 object-cover object-center -sm'
                             width={100}
                             height={100}
                           />
                           <button
                             type='button'
                             onClick={() => handleRemoveImage(image)}
-                            className='absolute -top-2 -right-2 bg-red-500 rounded-full p-0.5'
+                            className='absolute -top-2 -right-2 bg-red-500  p-0.5'
                           >
                             <X className='h-3 w-3 text-white' />
                           </button>

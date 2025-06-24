@@ -402,7 +402,7 @@ const ProductForm = ({
                           key={image}
                           src={image}
                           alt='product image'
-                          className='w-20 h-20 object-cover object-center rounded-sm'
+                          className='w-20 h-20 object-cover object-center -sm'
                           width={100}
                           height={100}
                         />

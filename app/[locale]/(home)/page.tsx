@@ -73,12 +73,12 @@ export default async function HomePage() {
       <HomeCarousel items={carousels} />
       <div className='md:p-4 md:space-y-4 bg-border'>
         <HomeCard cards={cards} />
-        <Card className='w-full rounded-3xl'>
+        <Card className='w-full '>
           <CardContent className='p-4 items-center gap-3'>
             <ProductSlider title={t("Today's Deals")} products={todaysDeals} />
           </CardContent>
         </Card>
-        <Card className='w-full rounded-3xl'>
+        <Card className='w-full '>
           <CardContent className='p-4 items-center gap-3  '>
             <ProductSlider
               title={t('Best Selling Products')}

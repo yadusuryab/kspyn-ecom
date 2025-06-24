@@ -6,7 +6,7 @@
 export default async function LoadingPage() {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen '>
-      <div className='p-6 rounded-lg shadow-md w-1/3 text-center'>
+      <div className='p-6 -lg shadow-md w-1/3 text-center'>
         Loading...
       </div>
     </div>
@@ -31,7 +31,7 @@ export default function ErrorPage({
 }) {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen '>
-      <div className='p-6 rounded-lg shadow-md w-1/3 text-center'>
+      <div className='p-6 -lg shadow-md w-1/3 text-center'>
         <h1 className='text-3xl font-bold mb-4'>Error</h1>
         <p className='text-destructive'>{error.message}</p>
         <Button variant='outline' className='mt-4' onClick={() => reset()}>
@@ -61,7 +61,7 @@ import { Button } from '@/components/ui/button'
 export default function NotFound() {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen '>
-      <div className='p-6 rounded-lg shadow-md w-1/3 text-center'>
+      <div className='p-6 -lg shadow-md w-1/3 text-center'>
         <h1 className='text-3xl font-bold mb-4'>Not Found</h1>
         <p className='text-destructive'>Could not find requested resource</p>
         <Button
@@ -463,7 +463,7 @@ export default function ThemeSwitcher() {
             <DropdownMenuRadioItem key={c.name} value={c.name}>
               <div
                 style={{ backgroundColor: c.name }}
-                className='h-4 w-4 mr-1 rounded-full'
+                className='h-4 w-4 mr-1 '
               ></div>
 
               {c.name}

@@ -56,7 +56,7 @@ export default function CartSidebar() {
             <Link
               className={cn(
                 buttonVariants({ variant: 'outline' }),
-                'rounded-full hover:no-underline w-full'
+                ' hover:no-underline w-full'
               )}
               href='/cart'
             >

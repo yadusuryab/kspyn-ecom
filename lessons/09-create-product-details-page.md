@@ -72,7 +72,7 @@
                onMouseOver={() => {
                  setSelectedImage(index)
                }}
-               className={`bg-white rounded-lg overflow-hidden ${
+               className={`bg-white -lg overflow-hidden ${
                  selectedImage === index
                    ? 'ring-2 ring-blue-500'
                    : 'ring-1 ring-gray-300'
@@ -151,7 +151,7 @@
                  >
                    <div
                      style={{ backgroundColor: x }}
-                     className='h-4 w-4 rounded-full border border-muted-foreground'
+                     className='h-4 w-4  border border-muted-foreground'
                    ></div>
                    {x}
                  </Link>
@@ -251,7 +251,7 @@
 
              <div className='flex w-full flex-col gap-2 md:p-5 col-span-2'>
                <div className='flex flex-col gap-3'>
-                 <p className='p-medium-16 rounded-full bg-grey-500/10   text-grey-500'>
+                 <p className='p-medium-16  bg-grey-500/10   text-grey-500'>
                    Brand {product.brand} {product.category}
                  </p>
                  <h1 className='font-bold text-lg lg:text-xl'>

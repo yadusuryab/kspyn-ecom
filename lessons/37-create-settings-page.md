@@ -245,7 +245,7 @@ export default function CarouselForm({
                   <Image
                     src={watch(`carousels.${index}.image`)}
                     alt='image'
-                    className=' w-full object-cover object-center rounded-sm'
+                    className=' w-full object-cover object-center -sm'
                     width={192}
                     height={68}
                   />

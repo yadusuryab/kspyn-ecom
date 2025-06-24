@@ -121,7 +121,7 @@ export default function OrderDetailsForm({
 
             {!isPaid && paymentMethod === 'Cash On Delivery' && (
               <Button
-                className='w-full rounded-full'
+                className='w-full '
                 onClick={() => router.push(`/account/orders/${order._id}`)}
               >
                 View Order

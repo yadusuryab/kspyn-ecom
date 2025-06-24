@@ -5,7 +5,7 @@
    ```tsx
    const bestSellingProducts = await getProductsByTag({ tag: 'best-seller' })
    return (
-     <Card className='w-full rounded-none'>
+     <Card className='w-full -none'>
        <CardContent className='p-4 items-center gap-3'>
          <ProductSlider
            title='Best Selling Products'

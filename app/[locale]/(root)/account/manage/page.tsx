@@ -31,7 +31,7 @@ export default async function ProfilePage() {
             </div>
             <div>
               <Link href='/account/manage/name'>
-                <Button className='rounded-full w-32' variant='outline'>
+                <Button className=' w-32' variant='outline'>
                   Edit
                 </Button>
               </Link>
@@ -48,7 +48,7 @@ export default async function ProfilePage() {
               <Link href='#'>
                 <Button
                   disabled
-                  className='rounded-full w-32'
+                  className=' w-32'
                   variant='outline'
                 >
                   Edit
@@ -67,7 +67,7 @@ export default async function ProfilePage() {
               <Link href='#'>
                 <Button
                   disabled
-                  className='rounded-full w-32'
+                  className=' w-32'
                   variant='outline'
                 >
                   Edit

@@ -28,7 +28,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
   return (
     <div>
       <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
-        <Card className='w-full rounded-none'>
+        <Card className='w-full -none'>
           <CardContent className='flex h-full items-center justify-center  gap-3 py-4'>
             <Link href={`/product/${item.slug}`}>
               <Image
@@ -58,7 +58,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
             </div>
           </CardContent>
         </Card>
-        <Card className='w-full rounded-none'>
+        <Card className='w-full -none'>
           <CardContent className='p-4 h-full'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
               <div className='flex justify-center items-center'>
@@ -93,7 +93,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
                 </div>
                 <Link
                   href='/checkout'
-                  className={cn(buttonVariants(), 'rounded-full w-full')}
+                  className={cn(buttonVariants(), ' w-full')}
                 >
                   Proceed to checkout (
                   {items.reduce((a, c) => a + c.quantity, 0)} items)
@@ -102,7 +102,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
                   href='/cart'
                   className={cn(
                     buttonVariants({ variant: 'outline' }),
-                    'rounded-full w-full'
+                    ' w-full'
                   )}
                 >
                   {t('Cart.Go to Cart')}

@@ -79,12 +79,12 @@ const ProductPrice = ({
           forListing ? 'justify-center' : 'justify-start'
         )}>
           {isDeal && (
-            <span className="bg-red-600 rounded px-2 py-1 text-xs font-bold text-white">
+            <span className="bg-red-600  px-2 py-1 text-xs font-bold text-white">
               {t('Product.Limited time deal')}
             </span>
           )}
           <span className={cn(
-            'rounded px-2 py-1 text-xs font-bold',
+            ' px-2 py-1 text-xs font-bold',
             isDeal ? 'bg-orange-500 text-white' : 'bg-orange-100 text-orange-800'
           )}>
             {discountPercent}% {t('Product.Off')}

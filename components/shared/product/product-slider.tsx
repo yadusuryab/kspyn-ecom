@@ -21,13 +21,13 @@ export default function ProductSlider({
   hideDetails?: boolean
 }) {
   return (
-    <div className='w-full bg-background rounded-3xl'>
+    <div className='w-full bg-background '>
       <h2 className='h2 font-bold mb-5 tracking-tighter'>{title}</h2>
       <Carousel
         opts={{
           align: 'start',
         }}
-        className='w-full rounded-3xl'
+        className='w-full '
       >
         <CarouselContent>
           {products?.map((product) => (

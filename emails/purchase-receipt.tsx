@@ -102,7 +102,7 @@ export default async function PurchaseReceiptEmail({
                 </Column>
               </Row>
             </Section>
-            <Section className='border border-solid border-gray-500 rounded-lg p-4 md:p-6 my-4'>
+            <Section className='border border-solid border-gray-500 -lg p-4 md:p-6 my-4'>
               {order.items?.map((item) => (
                 <Row key={item.product} className='mt-8'>
                   <Column className='w-20'>
@@ -110,7 +110,7 @@ export default async function PurchaseReceiptEmail({
                       <Img
                         width='80'
                         alt={item.name}
-                        className='rounded'
+                        className=''
                         src={
                           item.image.startsWith('/')
                             ? `${site.url}${item.image}`

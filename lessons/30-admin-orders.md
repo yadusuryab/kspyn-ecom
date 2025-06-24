@@ -35,7 +35,7 @@ export default config
                           <Image
                             src={image}
                             alt='product image'
-                            className='w-36 h-36 object-cover object-center rounded-sm'
+                            className='w-36 h-36 object-cover object-center -sm'
                             width={100}
                             height={100}
                           />

@@ -39,7 +39,7 @@ export default function SelectVariant({
               >
                 <div
                   style={{ backgroundColor: x }}
-                  className='h-4 w-4 rounded-full border border-muted-foreground'
+                  className='h-4 w-4  border border-muted-foreground'
                 ></div>
                 {x}
               </Link>

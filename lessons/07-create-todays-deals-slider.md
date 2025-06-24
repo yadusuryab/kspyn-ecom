@@ -140,7 +140,7 @@
      ) : isDeal ? (
        <div className='space-y-2'>
          <div className='flex justify-center items-center gap-2'>
-           <span className='bg-red-700 rounded-sm p-1 text-white text-sm font-semibold'>
+           <span className='bg-red-700 -sm p-1 text-white text-sm font-semibold'>
              {discountPercent}% Off
            </span>
            <span className='text-red-700 text-xs font-bold'>
@@ -428,7 +428,7 @@ export default async function HomePage() {
       <HomeCarousel items={data.carousels} />
       <div className='md:p-4 md:space-y-4 bg-border'>
         <HomeCard cards={cards} />
-        <Card className='w-full rounded-none'>
+        <Card className='w-full -none'>
           <CardContent className='p-4 items-center gap-3'>
             <ProductSlider title={"Today's Deals"} products={todaysDeals} />
           </CardContent>

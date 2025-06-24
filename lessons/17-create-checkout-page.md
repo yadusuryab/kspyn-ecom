@@ -448,7 +448,7 @@ const CheckoutForm = () => {
         {!isAddressSelected && (
           <div className='border-b mb-4'>
             <Button
-              className='rounded-full w-full'
+              className=' w-full'
               onClick={handleSelectShippingAddress}
             >
               Ship to this address
@@ -462,7 +462,7 @@ const CheckoutForm = () => {
         {isAddressSelected && !isPaymentMethodSelected && (
           <div className=' mb-4'>
             <Button
-              className='rounded-full w-full'
+              className=' w-full'
               onClick={handleSelectPaymentMethod}
             >
               Use this payment method
@@ -477,7 +477,7 @@ const CheckoutForm = () => {
         )}
         {isPaymentMethodSelected && isAddressSelected && (
           <div>
-            <Button onClick={handlePlaceOrder} className='rounded-full w-full'>
+            <Button onClick={handlePlaceOrder} className=' w-full'>
               Place Your Order
             </Button>
             <p className='text-xs text-center py-2'>
@@ -704,7 +704,7 @@ const CheckoutForm = () => {
                       <CardFooter className='  p-4'>
                         <Button
                           type='submit'
-                          className='rounded-full font-bold'
+                          className=' font-bold'
                         >
                           Ship to this address
                         </Button>
@@ -769,7 +769,7 @@ const CheckoutForm = () => {
                   <CardFooter className='p-4'>
                     <Button
                       onClick={handleSelectPaymentMethod}
-                      className='rounded-full font-bold'
+                      className=' font-bold'
                     >
                       Use this payment method
                     </Button>
@@ -973,7 +973,7 @@ const CheckoutForm = () => {
 
               <Card className='hidden md:block '>
                 <CardContent className='p-4 flex flex-col md:flex-row justify-between items-center gap-3'>
-                  <Button onClick={handlePlaceOrder} className='rounded-full'>
+                  <Button onClick={handlePlaceOrder} className=''>
                     Place Your Order
                   </Button>
                   <div className='flex-1'>

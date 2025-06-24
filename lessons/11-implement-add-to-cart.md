@@ -224,7 +224,7 @@
 
      return minimal ? (
        <Button
-         className='rounded-full w-auto'
+         className=' w-auto'
          onClick={() => {
            try {
              addItem(item, 1)
@@ -269,7 +269,7 @@
          </Select>
 
          <Button
-           className='rounded-full w-full'
+           className=' w-full'
            type='button'
            onClick={async () => {
              try {
@@ -298,7 +298,7 @@
                })
              }
            }}
-           className='w-full rounded-full '
+           className='w-full  '
          >
            Buy Now
          </Button>
@@ -383,7 +383,7 @@
       return (
         <div>
           <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
-            <Card className='w-full rounded-none'>
+            <Card className='w-full -none'>
               <CardContent className='flex h-full items-center justify-center  gap-3 py-4'>
                 <Link href={`/product/${item.slug}`}>
                   <Image
@@ -413,7 +413,7 @@
                 </div>
               </CardContent>
             </Card>
-            <Card className='w-full rounded-none'>
+            <Card className='w-full -none'>
               <CardContent className='p-4 h-full'>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                   <div className='flex justify-center items-center'>
@@ -446,7 +446,7 @@
                     </div>
                     <Link
                       href='/checkout'
-                      className={cn(buttonVariants(), 'rounded-full w-full')}
+                      className={cn(buttonVariants(), ' w-full')}
                     >
                       Proceed to checkout (
                       {items.reduce((a, c) => a + c.quantity, 0)} items)
@@ -455,7 +455,7 @@
                       href='/cart'
                       className={cn(
                         buttonVariants({ variant: 'outline' }),
-                        'rounded-full w-full'
+                        ' w-full'
                       )}
                     >
                       Go to Cart
@@ -511,7 +511,7 @@
             {isMounted && (
               <span
                 className={cn(
-                  `bg-black  px-1 rounded-full text-primary text-base font-bold absolute right-[30px] top-[-4px] z-10`,
+                  `bg-black  px-1  text-primary text-base font-bold absolute right-[30px] top-[-4px] z-10`,
                   cartItemsCount >= 10 && 'text-sm px-0 p-[1px]'
                 )}
               >

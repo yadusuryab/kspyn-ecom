@@ -1,6 +1,6 @@
 import { SearchIcon } from "lucide-react";
 
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { getAllCategories } from "@/lib/actions/product.actions";
 
 import {
@@ -25,10 +25,10 @@ export default async function Search() {
     <form
       action="/search"
       method="GET"
-      className="flex bg-secondary rounded-full items-center shadow-sm h-10 px-1 py-2"
+      className="flex bg-secondary  items-center shadow-sm h-10 px-1 py-2"
     >
       <Select name="category">
-        <SelectTrigger className="w-auto  bg-background   rounded-full  ">
+        <SelectTrigger className="w-auto  bg-background     ">
           <SelectValue placeholder={t("Header.All")} />
         </SelectTrigger>
         <SelectContent position="popper">
@@ -40,13 +40,13 @@ export default async function Search() {
           ))}
         </SelectContent>
       </Select>
-      <Input
-        className="flex-1 rounded-none  text-base h-full"
+      <input
+        className="flex-1 -none  text-base h-full"
         placeholder={t("Header.Search Site", { name })}
         name="q"
         type="search"
       />
-      <Button type="submit" size={"icon"} className="rounded-full">
+      <Button type="submit" size={"icon"} className="">
         <SearchIcon />
       </Button>
     </form>

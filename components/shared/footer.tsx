@@ -28,7 +28,7 @@ export default function Footer() {
       <div className='w-full'>
         <Button
           variant='ghost'
-          className='bg-secondary w-full  rounded-none '
+          className='bg-secondary w-full  -none '
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <ChevronUp className='mr-2 h-4 w-4' />

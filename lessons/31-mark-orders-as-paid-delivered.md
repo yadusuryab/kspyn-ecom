@@ -7,7 +7,7 @@
 -                    <Img
 -                      width='80'
 -                      alt={item.name}
--                      className='rounded'
+-                      className=''
 -                      src={
 -                        item.image.startsWith('/')
 -                          ? `${SERVER_URL}${item.image}`
@@ -18,7 +18,7 @@
                       <Img
                         width='80'
                         alt={item.name}
-                        className='rounded'
+                        className=''
                         src={
                           item.image.startsWith('/')
                             ? `${SERVER_URL}${item.image}`
@@ -143,7 +143,7 @@ export default async function AskReviewOrderItemsEmail({
                 </Column>
               </Row>
             </Section>
-            <Section className='border border-solid border-gray-500 rounded-lg p-4 md:p-6 my-4'>
+            <Section className='border border-solid border-gray-500 -lg p-4 md:p-6 my-4'>
               {order.items?.map((item) => (
                 <Row key={item.product} className='mt-8'>
                   <Column className='w-20'>
@@ -151,7 +151,7 @@ export default async function AskReviewOrderItemsEmail({
                       <Img
                         width='80'
                         alt={item.name}
-                        className='rounded'
+                        className=''
                         src={
                           item.image.startsWith('/')
                             ? `${SERVER_URL}${item.image}`
@@ -170,7 +170,7 @@ export default async function AskReviewOrderItemsEmail({
                   <Column align='right' className='align-top '>
                     <Button
                       href={`${SERVER_URL}/product/${item.slug}#reviews`}
-                      className='text-center bg-blue-500 hover:bg-blue-700 text-white   py-2 px-4 rounded'
+                      className='text-center bg-blue-500 hover:bg-blue-700 text-white   py-2 px-4 '
                     >
                       Review this product
                     </Button>
@@ -325,7 +325,7 @@ export default function ActionButton({
   return (
     <Button
       type='button'
-      className={cn('rounded-full', className)}
+      className={cn('', className)}
       variant={variant}
       size={size}
       disabled={isPending}

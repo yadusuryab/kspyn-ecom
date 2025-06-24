@@ -18,7 +18,7 @@ export function HomeCard({ cards }: { cards: CardItem[] }) {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4'>
       {cards?.map((card) => (
-        <Card key={card.title} className='rounded-3xl flex flex-col'>
+        <Card key={card.title} className=' flex flex-col'>
           <CardContent className='p-4 flex-1'>
             <h3 className='text-xl font-bold mb-4 tracking-tighter'>{card.title}</h3>
             <div className='grid grid-cols-2 gap-4'>

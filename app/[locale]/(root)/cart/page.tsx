@@ -37,7 +37,7 @@ export default function CartPage() {
     <div>
       <div className='grid grid-cols-1 md:grid-cols-4  md:gap-4'>
         {items.length === 0 ? (
-          <Card className='col-span-4 rounded-none'>
+          <Card className='col-span-4 -none'>
             <CardHeader className='text-3xl  '>
               {t('Cart.Your Shopping Cart is empty')}
             </CardHeader>
@@ -51,7 +51,7 @@ export default function CartPage() {
         ) : (
           <>
             <div className='col-span-3'>
-              <Card className='rounded-none'>
+              <Card className='-none'>
                 <CardHeader className='text-3xl pb-0'>
                   {t('Cart.Shopping Cart')}
                 </CardHeader>
@@ -165,7 +165,7 @@ export default function CartPage() {
               </Card>
             </div>
             <div>
-              <Card className='rounded-none'>
+              <Card className='-none'>
                 <CardContent className='py-4 space-y-4'>
                   {itemsPrice < freeShippingMinPrice ? (
                     <div className='flex-1'>
@@ -198,7 +198,7 @@ export default function CartPage() {
                   </div>
                   <Button
                     onClick={() => router.push('/checkout')}
-                    className='rounded-full w-full'
+                    className=' w-full'
                   >
                     {t('Cart.Proceed to Checkout')}
                   </Button>

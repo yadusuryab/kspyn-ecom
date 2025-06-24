@@ -75,7 +75,7 @@ export default function UpiQrForm({
       {errorMessage && <div className='text-destructive'>{errorMessage}</div>}
       
       <div className="flex flex-col items-center gap-4">
-        <div className="border p-4 rounded-lg">
+        <div className="border p-4 -lg">
         <QRCode 
             value={qrCodeUrl}
             size={200}

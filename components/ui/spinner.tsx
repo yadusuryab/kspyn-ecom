@@ -54,7 +54,7 @@ const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
             }}
           >
             <span
-              className={cn("block w-full h-[30%] rounded-full", bgColorClass)}
+              className={cn("block w-full h-[30%] ", bgColorClass)}
             ></span>
           </span>
         ))}

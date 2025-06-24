@@ -25,7 +25,7 @@
    ```css
    @layer utilities {
      .header-button {
-       @apply cursor-pointer p-1 border border-transparent hover:border-white rounded-[2px];
+       @apply cursor-pointer p-1 border border-transparent hover:border-white -[2px];
      }
      .h1-bold {
        @apply font-bold text-2xl lg:text-3xl;
@@ -82,7 +82,7 @@
          className='flex  items-stretch h-10 '
        >
          <Select name='category'>
-           <SelectTrigger className='w-auto h-full dark:border-gray-200 bg-gray-100 text-black border-r  rounded-r-none rounded-l-md'>
+           <SelectTrigger className='w-auto h-full dark:border-gray-200 bg-gray-100 text-black border-r  -r-none -l-md'>
              <SelectValue placeholder='All' />
            </SelectTrigger>
            <SelectContent position='popper'>
@@ -95,14 +95,14 @@
            </SelectContent>
          </Select>
          <Input
-           className='flex-1 rounded-none dark:border-gray-200 bg-gray-100 text-black text-base h-full'
+           className='flex-1 -none dark:border-gray-200 bg-gray-100 text-black text-base h-full'
            placeholder={`Search Site ${APP_NAME}`}
            name='q'
            type='search'
          />
          <button
            type='submit'
-           className='bg-primary text-primary-foreground text-black rounded-s-none rounded-e-md h-full px-3 py-2 '
+           className='bg-primary text-primary-foreground text-black -s-none -e-md h-full px-3 py-2 '
          >
            <SearchIcon className='w-6 h-6' />
          </button>
@@ -235,7 +235,7 @@
           <div className='w-full'>
             <Button
               variant='ghost'
-              className='bg-gray-800 w-full  rounded-none '
+              className='bg-gray-800 w-full  -none '
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               <ChevronUp className='mr-2 h-4 w-4' />

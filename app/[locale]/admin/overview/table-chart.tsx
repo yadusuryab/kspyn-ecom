@@ -29,7 +29,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
   return (
     <div className='relative w-full h-4 overflow-hidden'>
       <div
-        className='bg-primary h-full transition-all duration-300 rounded-lg'
+        className='bg-primary h-full transition-all duration-300 -lg'
         style={{
           width: `${boundedValue}%`,
           float: 'right', // Aligns the bar to start from the right
@@ -59,7 +59,7 @@ export default function TableChart({
           {image ? (
             <Link className='flex items-end' href={`/admin/products/${id}`}>
               <Image
-                className='rounded border  aspect-square object-scale-down max-w-full h-auto mx-auto mr-1'
+                className=' border  aspect-square object-scale-down max-w-full h-auto mx-auto mr-1'
                 src={image!}
                 alt={label}
                 width={36}

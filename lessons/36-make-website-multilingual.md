@@ -1749,8 +1749,8 @@ import { getDirection } from '@/i18n-config'
   const t = useTranslations()
 
   const locale = useLocale()
--              `bg-black  px-1 rounded-full text-primary text-base font-bold absolute right-[30px] top-[-4px] z-10`,
-              `bg-black  px-1 rounded-full text-primary text-base font-bold absolute ${
+-              `bg-black  px-1  text-primary text-base font-bold absolute right-[30px] top-[-4px] z-10`,
+              `bg-black  px-1  text-primary text-base font-bold absolute ${
                 getDirection(locale) === 'rtl' ? 'right-[5px]' : 'left-[10px]'
               } top-[-4px] z-10`,
 -        <span className='font-bold'>Cart</span>
@@ -1820,9 +1820,9 @@ import { getTranslations } from 'next-intl/server'
   } = await getSetting()
 
   const t = await getTranslations()
--        <SelectTrigger className='w-auto h-full dark:border-gray-200 bg-gray-100 text-black border-r  rounded-r-none rounded-l-md'>
+-        <SelectTrigger className='w-auto h-full dark:border-gray-200 bg-gray-100 text-black border-r  -r-none -l-md'>
 -          <SelectValue placeholder='All' />
-        <SelectTrigger className='w-auto h-full dark:border-gray-200 bg-gray-100 text-black border-r  rounded-r-none rounded-l-md rtl:rounded-r-md rtl:rounded-l-none  '>
+        <SelectTrigger className='w-auto h-full dark:border-gray-200 bg-gray-100 text-black border-r  -r-none -l-md rtl:-r-md rtl:-l-none  '>
           <SelectValue placeholder={t('Header.All')} />
 -          <SelectItem value='all'>All</SelectItem>
           <SelectItem value='all'>{t('Header.All')}</SelectItem>
@@ -2924,12 +2924,12 @@ export default async function HomePage() {
       <HomeCarousel items={carousels} />
       <div className='md:p-4 md:space-y-4 bg-border'>
         <HomeCard cards={cards} />
-        <Card className='w-full rounded-none'>
+        <Card className='w-full -none'>
           <CardContent className='p-4 items-center gap-3'>
             <ProductSlider title={t("Today's Deals")} products={todaysDeals} />
           </CardContent>
         </Card>
-        <Card className='w-full rounded-none'>
+        <Card className='w-full -none'>
           <CardContent className='p-4 items-center gap-3'>
             <ProductSlider
               title={t('Best Selling Products')}
@@ -3148,7 +3148,7 @@ export default async function ProfilePage() {
             </div>
             <div>
               <Link href='/account/manage/name'>
-                <Button className='rounded-full w-32' variant='outline'>
+                <Button className=' w-32' variant='outline'>
                   Edit
                 </Button>
               </Link>
@@ -3165,7 +3165,7 @@ export default async function ProfilePage() {
               <Link href='#'>
                 <Button
                   disabled
-                  className='rounded-full w-32'
+                  className=' w-32'
                   variant='outline'
                 >
                   Edit
@@ -3184,7 +3184,7 @@ export default async function ProfilePage() {
               <Link href='#'>
                 <Button
                   disabled
-                  className='rounded-full w-32'
+                  className=' w-32'
                   variant='outline'
                 >
                   Edit
@@ -3463,7 +3463,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
   return (
     <div>
       <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
-        <Card className='w-full rounded-none'>
+        <Card className='w-full -none'>
           <CardContent className='flex h-full items-center justify-center  gap-3 py-4'>
             <Link href={`/product/${item.slug}`}>
               <Image
@@ -3493,7 +3493,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
             </div>
           </CardContent>
         </Card>
-        <Card className='w-full rounded-none'>
+        <Card className='w-full -none'>
           <CardContent className='p-4 h-full'>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
               <div className='flex justify-center items-center'>
@@ -3528,7 +3528,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
                 </div>
                 <Link
                   href='/checkout'
-                  className={cn(buttonVariants(), 'rounded-full w-full')}
+                  className={cn(buttonVariants(), ' w-full')}
                 >
                   Proceed to checkout (
                   {items.reduce((a, c) => a + c.quantity, 0)} items)
@@ -3537,7 +3537,7 @@ export default function CartAddItem({ itemId }: { itemId: string }) {
                   href='/cart'
                   className={cn(
                     buttonVariants({ variant: 'outline' }),
-                    'rounded-full w-full'
+                    ' w-full'
                   )}
                 >
                   {t('Cart.Go to Cart')}
@@ -3609,7 +3609,7 @@ export default function CartPage() {
     <div>
       <div className='grid grid-cols-1 md:grid-cols-4  md:gap-4'>
         {items.length === 0 ? (
-          <Card className='col-span-4 rounded-none'>
+          <Card className='col-span-4 -none'>
             <CardHeader className='text-3xl  '>
               {t('Cart.Your Shopping Cart is empty')}
             </CardHeader>
@@ -3623,7 +3623,7 @@ export default function CartPage() {
         ) : (
           <>
             <div className='col-span-3'>
-              <Card className='rounded-none'>
+              <Card className='-none'>
                 <CardHeader className='text-3xl pb-0'>
                   {t('Cart.Shopping Cart')}
                 </CardHeader>
@@ -3737,7 +3737,7 @@ export default function CartPage() {
               </Card>
             </div>
             <div>
-              <Card className='rounded-none'>
+              <Card className='-none'>
                 <CardContent className='py-4 space-y-4'>
                   {itemsPrice < freeShippingMinPrice ? (
                     <div className='flex-1'>
@@ -3770,7 +3770,7 @@ export default function CartPage() {
                   </div>
                   <Button
                     onClick={() => router.push('/checkout')}
-                    className='rounded-full w-full'
+                    className=' w-full'
                   >
                     {t('Cart.Proceed to Checkout')}
                   </Button>
@@ -3925,7 +3925,7 @@ export default async function ProductDetails(props: {
 
           <div className='flex w-full flex-col gap-2 md:p-5 col-span-2'>
             <div className='flex flex-col gap-3'>
-              <p className='p-medium-16 rounded-full bg-grey-500/10   text-grey-500'>
+              <p className='p-medium-16  bg-grey-500/10   text-grey-500'>
                 {t('Product.Brand')} {product.brand} {product.category}
               </p>
               <h1 className='font-bold text-lg lg:text-xl'>{product.name}</h1>
@@ -4210,7 +4210,7 @@ export default function ReviewList({
                 <Button
                   onClick={handleOpenForm}
                   variant='outline'
-                  className=' rounded-full w-full'
+                  className='  w-full'
                 >
                   {t('Write a customer review')}
                 </Button>
@@ -5485,7 +5485,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value }) => {
   return (
     <div className='relative w-full h-4 overflow-hidden'>
       <div
-        className='bg-primary h-full transition-all duration-300 rounded-lg'
+        className='bg-primary h-full transition-all duration-300 -lg'
         style={{
           width: `${boundedValue}%`,
           float: 'right', // Aligns the bar to start from the right
@@ -5515,7 +5515,7 @@ export default function TableChart({
           {image ? (
             <Link className='flex items-end' href={`/admin/products/${id}`}>
               <Image
-                className='rounded border  aspect-square object-scale-down max-w-full h-auto mx-auto mr-1'
+                className=' border  aspect-square object-scale-down max-w-full h-auto mx-auto mr-1'
                 src={image!}
                 alt={label}
                 width={36}
@@ -5905,7 +5905,7 @@ const ProductForm = ({
                           key={image}
                           src={image}
                           alt='product image'
-                          className='w-20 h-20 object-cover object-center rounded-sm'
+                          className='w-20 h-20 object-cover object-center -sm'
                           width={100}
                           height={100}
                         />
@@ -7012,7 +7012,7 @@ export default function OrderDetailsForm({
 
             {!isPaid && paymentMethod === 'Cash On Delivery' && (
               <Button
-                className='w-full rounded-full'
+                className='w-full '
                 onClick={() => router.push(`/account/orders/${order._id}`)}
               >
                 View Order
@@ -7426,7 +7426,7 @@ const CheckoutForm = () => {
         {!isAddressSelected && (
           <div className='border-b mb-4'>
             <Button
-              className='rounded-full w-full'
+              className=' w-full'
               onClick={handleSelectShippingAddress}
             >
               Ship to this address
@@ -7440,7 +7440,7 @@ const CheckoutForm = () => {
         {isAddressSelected && !isPaymentMethodSelected && (
           <div className=' mb-4'>
             <Button
-              className='rounded-full w-full'
+              className=' w-full'
               onClick={handleSelectPaymentMethod}
             >
               Use this payment method
@@ -7455,7 +7455,7 @@ const CheckoutForm = () => {
         )}
         {isPaymentMethodSelected && isAddressSelected && (
           <div>
-            <Button onClick={handlePlaceOrder} className='rounded-full w-full'>
+            <Button onClick={handlePlaceOrder} className=' w-full'>
               Place Your Order
             </Button>
             <p className='text-xs text-center py-2'>
@@ -7682,7 +7682,7 @@ const CheckoutForm = () => {
                       <CardFooter className='  p-4'>
                         <Button
                           type='submit'
-                          className='rounded-full font-bold'
+                          className=' font-bold'
                         >
                           Ship to this address
                         </Button>
@@ -7747,7 +7747,7 @@ const CheckoutForm = () => {
                   <CardFooter className='p-4'>
                     <Button
                       onClick={handleSelectPaymentMethod}
-                      className='rounded-full font-bold'
+                      className=' font-bold'
                     >
                       Use this payment method
                     </Button>
@@ -7950,7 +7950,7 @@ const CheckoutForm = () => {
 
               <Card className='hidden md:block '>
                 <CardContent className='p-4 flex flex-col md:flex-row justify-between items-center gap-3'>
-                  <Button onClick={handlePlaceOrder} className='rounded-full'>
+                  <Button onClick={handlePlaceOrder} className=''>
                     Place Your Order
                   </Button>
                   <div className='flex-1'>
@@ -8072,7 +8072,7 @@ export default function ErrorPage({
   const t = useTranslations()
   return (
     <div className='flex flex-col items-center justify-center min-h-screen '>
-      <div className='p-6 rounded-lg shadow-md w-1/3 text-center'>
+      <div className='p-6 -lg shadow-md w-1/3 text-center'>
         <h1 className='text-3xl font-bold mb-4'>{t('Error.Error')}</h1>
         <p className='text-destructive'>{error.message}</p>
         <Button variant='outline' className='mt-4' onClick={() => reset()}>
@@ -8177,7 +8177,7 @@ export default async function LoadingPage() {
   const t = await getTranslations()
   return (
     <div className='flex flex-col items-center justify-center min-h-screen '>
-      <div className='p-6 rounded-lg shadow-md w-1/3 text-center'>
+      <div className='p-6 -lg shadow-md w-1/3 text-center'>
         {t('Loading.Loading')}
       </div>
     </div>

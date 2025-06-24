@@ -135,14 +135,14 @@ export default async function PurchaseReceiptEmail({
                 </Column>
               </Row>
             </Section>
-            <Section className='border border-solid border-gray-500 rounded-lg p-4 md:p-6 my-4'>
+            <Section className='border border-solid border-gray-500 -lg p-4 md:p-6 my-4'>
               {order.items?.map((item) => (
                 <Row key={item.product} className='mt-8'>
                   <Column className='w-20'>
                     <Img
                       width='80'
                       alt={item.name}
-                      className='rounded'
+                      className=''
                       src={
                         item.image.startsWith('/')
                           ? `${SERVER_URL}${item.image}`
@@ -501,7 +501,7 @@ export default function OrderPaymentForm({
 
             {!isPaid && paymentMethod === 'Cash On Delivery' && (
               <Button
-                className='w-full rounded-full'
+                className='w-full '
                 onClick={() => router.push(`/account/orders/${order._id}`)}
               >
                 View Order
