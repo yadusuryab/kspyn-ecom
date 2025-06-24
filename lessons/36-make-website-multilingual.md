@@ -696,7 +696,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale
 
   // Ensure that the incoming locale is valid
-  if (!locale || !routing.locales.includes(locale as any)) {
+  if (!locale || !routing.locales?.includes(locale as any)) {
     locale = routing.defaultLocale
   }
 
@@ -3942,7 +3942,7 @@ export default async function ProductDetails(props: {
                   <ProductPrice
                     price={product.price}
                     listPrice={product.listPrice}
-                    isDeal={product.tags.includes('todays-deal')}
+                    isDeal={product.tags?.includes('todays-deal')}
                     forListing={false}
                   />
                 </div>
@@ -4729,7 +4729,7 @@ export function AdminNav({
           href={item.href}
           className={cn(
             '',
-            pathname.includes(item.href) ? '' : 'text-muted-foreground'
+            pathname?.includes(item.href) ? '' : 'text-muted-foreground'
           )}
         >
           {t(item.title)}
@@ -8143,7 +8143,7 @@ export default async function AppLayout({
   const { locale } = await params
   // Ensure that the incoming `locale` is valid
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales?.includes(locale as any)) {
     notFound()
   }
   const messages = await getMessages()

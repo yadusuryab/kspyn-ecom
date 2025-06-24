@@ -44,7 +44,7 @@ export default function DeliveryDateForm({
 
   useEffect(() => {
     const validCodes = availableDeliveryDates?.map((lang) => lang.name)
-    if (!validCodes.includes(defaultDeliveryDate)) {
+    if (!validCodes?.includes(defaultDeliveryDate)) {
       setValue('defaultDeliveryDate', '')
     }
   }, [JSON.stringify(availableDeliveryDates)])

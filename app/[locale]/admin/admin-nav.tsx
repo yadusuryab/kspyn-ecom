@@ -52,7 +52,7 @@ export function AdminNav({
           href={item.href}
           className={cn(
             '',
-            pathname.includes(item.href) ? '' : 'text-muted-foreground'
+            pathname?.includes(item.href) ? '' : 'text-muted-foreground'
           )}
         >
           {t(item.title)}

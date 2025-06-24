@@ -36,7 +36,7 @@ const ProductPrice = ({
 
   // Split price into integer and decimal parts
   const stringValue = convertedPrice.toString()
-  const [intValue, floatValue] = stringValue.includes('.')
+  const [intValue, floatValue] = stringValue?.includes('.')
     ? stringValue.split('.')
     : [stringValue, '']
 

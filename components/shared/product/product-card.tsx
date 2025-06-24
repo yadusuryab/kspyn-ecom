@@ -68,7 +68,7 @@ const ProductCard = ({
      
 
       <ProductPrice
-        isDeal={product.tags.includes('todays-deal')}
+        isDeal={product.tags?.includes('todays-deal')}
         price={product.price}
         listPrice={product.listPrice}
         forListing

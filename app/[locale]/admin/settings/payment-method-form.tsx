@@ -43,7 +43,7 @@ export default function PaymentMethodForm({
 
   useEffect(() => {
     const validCodes = availablePaymentMethods?.map((lang) => lang.name)
-    if (!validCodes.includes(defaultPaymentMethod)) {
+    if (!validCodes?.includes(defaultPaymentMethod)) {
       setValue('defaultPaymentMethod', '')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

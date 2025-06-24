@@ -43,7 +43,7 @@ export default function CurrencyForm({
 
   useEffect(() => {
     const validCodes = availableCurrencies?.map((lang) => lang.code)
-    if (!validCodes.includes(defaultCurrency)) {
+    if (!validCodes?.includes(defaultCurrency)) {
       setValue('defaultCurrency', '')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

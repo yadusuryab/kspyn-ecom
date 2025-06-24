@@ -498,7 +498,7 @@ export default function CurrencyForm({
 
   useEffect(() => {
     const validCodes = availableCurrencies?.map((lang) => lang.code)
-    if (!validCodes.includes(defaultCurrency)) {
+    if (!validCodes?.includes(defaultCurrency)) {
       setValue('defaultCurrency', '')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -691,7 +691,7 @@ export default function DeliveryDateForm({
 
   useEffect(() => {
     const validCodes = availableDeliveryDates?.map((lang) => lang.name)
-    if (!validCodes.includes(defaultDeliveryDate)) {
+    if (!validCodes?.includes(defaultDeliveryDate)) {
       setValue('defaultDeliveryDate', '')
     }
   }, [JSON.stringify(availableDeliveryDates)])
@@ -890,7 +890,7 @@ export default function LanguageForm({
 
   useEffect(() => {
     const validCodes = availableLanguages?.map((lang) => lang.code)
-    if (!validCodes.includes(defaultLanguage)) {
+    if (!validCodes?.includes(defaultLanguage)) {
       setValue('defaultLanguage', '')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1045,7 +1045,7 @@ export default function PaymentMethodForm({
 
   useEffect(() => {
     const validCodes = availablePaymentMethods?.map((lang) => lang.name)
-    if (!validCodes.includes(defaultPaymentMethod)) {
+    if (!validCodes?.includes(defaultPaymentMethod)) {
       setValue('defaultPaymentMethod', '')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

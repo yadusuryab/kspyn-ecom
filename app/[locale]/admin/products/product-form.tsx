@@ -133,7 +133,7 @@ const ProductForm = ({
   const tags = form.watch('tags')
 
   const handleAddColor = () => {
-    if (newColor && !colors.includes(newColor)) {
+    if (newColor && !colors?.includes(newColor)) {
       form.setValue('colors', [...colors, newColor])
       setNewColor('')
     }
@@ -144,7 +144,7 @@ const ProductForm = ({
   }
 
   const handleAddSize = () => {
-    if (newSize && !sizes.includes(newSize)) {
+    if (newSize && !sizes?.includes(newSize)) {
       form.setValue('sizes', [...sizes, newSize])
       setNewSize('')
     }
@@ -155,7 +155,7 @@ const ProductForm = ({
   }
 
   const handleAddTag = () => {
-    if (newTag && !tags.includes(newTag)) {
+    if (newTag && !tags?.includes(newTag)) {
       form.setValue('tags', [...tags, newTag])
       setNewTag('')
     }

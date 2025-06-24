@@ -125,7 +125,7 @@
    }) => {
      const discountPercent = Math.round(100 - (price / listPrice) * 100)
      const stringValue = price.toString()
-     const [intValue, floatValue] = stringValue.includes('.')
+     const [intValue, floatValue] = stringValue?.includes('.')
        ? stringValue.split('.')
        : [stringValue, '']
 
@@ -310,7 +310,7 @@
          </div>
 
          <ProductPrice
-           isDeal={product.tags.includes('todays-deal')}
+           isDeal={product.tags?.includes('todays-deal')}
            price={product.price}
            listPrice={product.listPrice}
            forListing

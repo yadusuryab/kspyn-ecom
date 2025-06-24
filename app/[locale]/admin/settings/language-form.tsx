@@ -43,7 +43,7 @@ export default function LanguageForm({
 
   useEffect(() => {
     const validCodes = availableLanguages?.map((lang) => lang.code)
-    if (!validCodes.includes(defaultLanguage)) {
+    if (!validCodes?.includes(defaultLanguage)) {
       setValue('defaultLanguage', '')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
