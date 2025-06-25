@@ -21,7 +21,7 @@ const spinnerVariants = cva(
 
 export interface SpinnerProps
   extends React.HTMLAttributes<HTMLSpanElement>,
-  VariantProps<typeof spinnerVariants> {
+    VariantProps<typeof spinnerVariants> {
   loading?: boolean;
   asChild?: boolean;
 }
@@ -44,17 +44,17 @@ const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
         ref={ref}
         {...props}
       >
-        {Array.from({ length: 8 })?.map((_, i) => (
+        {Array.from({ length: 8 }).map((_, i) => (
           <span
             key={i}
-            className="absolute top-0 left-1/2 w-[12.5%] h-full animate-spinner-leaf-fade  rounded"
+            className="absolute top-0 left-1/2 w-[12.5%] h-full animate-spinner-leaf-fade"
             style={{
               transform: `rotate(${i * 45}deg)`,
               animationDelay: `${-(7 - i) * 100}ms`,
             }}
           >
             <span
-              className={cn("block w-full h-[30%] ", bgColorClass)}
+              className={cn("block w-full h-[30%] rounded-full", bgColorClass)}
             ></span>
           </span>
         ))}
