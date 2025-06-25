@@ -8,6 +8,7 @@ import Sidebar from './sidebar'
 import { getSetting } from '@/lib/actions/setting.actions'
 import { getTranslations } from 'next-intl/server'
 import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 export default async function Header() {
   const categories = await getAllCategories()
@@ -15,7 +16,7 @@ export default async function Header() {
   const t = await getTranslations()
   return (
     <header className='bg-background'>
-      <div className='px-2'>
+      <div className='px-2 relative'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center'>
             <Link
@@ -41,20 +42,30 @@ export default async function Header() {
           <Search />
         </div>
       </div>
-      <div className='flex items-center px-3 mb-[1px]  border-b'>
+      <div className='flex  items-center sticky px-3 mb-[1px] py-1'>
         <Sidebar categories={categories} />
-        <div className='flex items-center flex-wrap gap-3 overflow-hidden   max-h-[42px]'>
-          {data.headerMenus?.map((menu) => (
-            <Link
-              href={menu.href}
-              className={`${buttonVariants({variant:'ghost'})} header-button text-md   tracking-tighter text-accent-foreground  !p-2               `}
-              key={menu.href}
-         
-            >
-              {t('Header.' + menu.name)}
-            </Link>
-          ))}
-        </div>
+        <div className="relative w-full">
+  {/* Scrollable menu container */}
+  <div className="flex items-center gap-2 overflow-x-auto  hide-scrollbar w-full">
+    {data.headerMenus?.map((menu) => (
+      <Link
+        href={menu.href}
+        className={cn(
+          buttonVariants({ variant: 'ghost' }),
+          "header-button whitespace-nowrap text-md tracking-tighter",
+          "text-accent-foreground px-3 py-1 shrink-0",
+          "hover:bg-accent/50 transition-colors"
+        )}
+        key={menu.href}
+      >
+        {t('Header.' + menu.name)}
+      </Link>
+    ))}
+  </div>
+
+  {/* Fade effect for scroll indication */}
+  <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent pointer-events-none" />
+</div>
       </div>
     </header>
   )

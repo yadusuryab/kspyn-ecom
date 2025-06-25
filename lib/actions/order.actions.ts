@@ -37,8 +37,8 @@ export const createOrder = async (clientSideCart: Cart) => {
         const itemsList = createdOrder.items?.map(item => 
           `├─ ${item.name}
    ├─ Quantity: ${item.quantity}
-   ├─ Price: $${item.price.toFixed(2)}
-   ├─ Subtotal: $${(item.price * item.quantity).toFixed(2)}
+   ├─ Price: ₹${item.price.toFixed(2)}
+   ├─ Subtotal: ₹${(item.price * item.quantity).toFixed(2)}
    ${item.size ? `├─ Size: ${item.size}` : ''}
    ${item.color ? `└─ Color: ${item.color}` : '└─ No variant specified'}`
         ).join('\n\n');
@@ -61,32 +61,31 @@ export const createOrder = async (clientSideCart: Cart) => {
         // Compose full message
         const message = `📦 *NEW ORDER* 📦
         
-🆔 *Order ID*: ${createdOrder._id.toString()}
-📅 *Created*: ${createdOrder.createdAt.toLocaleString()}
-🚚 *Expected Delivery*: ${createdOrder.expectedDeliveryDate.toLocaleDateString()}
-
-👤 *Customer Details*:
-├─ User ID: ${createdOrder.user}
-${shippingInfo}
-
-🛒 *Order Items* (${createdOrder.items.length}):
-${itemsList}
-
-💳 *Payment Information*:
-├─ Method: ${createdOrder.paymentMethod}
-${paymentInfo}
-
-💰 *Pricing Summary*:
-├─ Items: $${createdOrder.itemsPrice.toFixed(2)}
-├─ Shipping: $${createdOrder.shippingPrice.toFixed(2)}
-├─ Tax: $${createdOrder.taxPrice.toFixed(2)}
-└─ *TOTAL*: $${createdOrder.totalPrice.toFixed(2)}
-
-📊 *Order Status*:
-├─ Paid: ${createdOrder.isPaid ? '✅' : '❌'} ${createdOrder.paidAt ? `(on ${createdOrder.paidAt.toLocaleString()})` : ''}
-└─ Delivered: ${createdOrder.isDelivered ? '✅' : '❌'} ${createdOrder.deliveredAt ? `(on ${createdOrder.deliveredAt.toLocaleString()})` : ''}`;
-
-        const telegramUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+        🆔 *Order ID*: [${createdOrder._id.toString()}](${process.env.NEXT_PUBLIC_SERVER_URL}/admin/orders/${createdOrder._id.toString()})
+        📅 *Created*: ${createdOrder.createdAt.toLocaleString()}
+        🚚 *Expected Delivery*: ${createdOrder.expectedDeliveryDate.toLocaleDateString()}
+        
+        👤 *Customer Details*:
+        ├─ User ID: ${createdOrder.user}
+        ${shippingInfo}
+        
+        🛒 *Order Items* (${createdOrder.items.length}):
+        ${itemsList}
+        
+        💳 *Payment Information*:
+        ├─ Method: ${createdOrder.paymentMethod}
+        ${paymentInfo}
+        
+        💰 *Pricing Summary*:
+        ├─ Items: ₹${createdOrder.itemsPrice.toFixed(2)}
+        ├─ Shipping: ₹${createdOrder.shippingPrice.toFixed(2)}
+        ├─ Tax: ₹${createdOrder.taxPrice.toFixed(2)}
+        └─ *TOTAL*: ₹${createdOrder.totalPrice.toFixed(2)}
+        
+        📊 *Order Status*:
+        ├─ Paid: ${createdOrder.isPaid ? '✅' : '❌'} ${createdOrder.paidAt ? `(on ${createdOrder.paidAt.toLocaleString()})` : ''}
+        └─ Delivered: ${createdOrder.isDelivered ? '✅' : '❌'} ${createdOrder.deliveredAt ? `(on ${createdOrder.deliveredAt.toLocaleString()})` : ''}`
+           const telegramUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
         
         const response = await fetch(telegramUrl, {
           method: 'POST',

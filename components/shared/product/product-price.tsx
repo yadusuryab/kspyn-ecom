@@ -25,67 +25,79 @@ const ProductPrice = ({
   const t = useTranslations()
   const format = useFormatter()
 
+  // Color variables
+  const colors = {
+    primary: 'text-primary',
+    secondary: 'text-secondary-foreground',
+    accent: 'text-accent-foreground',
+    accentBackground: 'bg-accent',
+    dealAccent: 'text-primary-foreground',
+    dealBackground: 'bg-primary',
+    limitedDealBackground: 'bg-destructive',
+    savings: 'text-green-600',
+    strikeThrough: 'line-through'
+  }
+
   // Convert prices based on currency rate
   const convertedPrice = round2(currency.convertRate * price)
   const convertedListPrice = round2(currency.convertRate * listPrice)
+  const discountPercent = Math.round(100 - (convertedPrice / convertedListPrice) * 100)
   
-  // Calculate discount percentage
-  const discountPercent = Math.round(
-    100 - (convertedPrice / convertedListPrice) * 100
-  )
-
   // Split price into integer and decimal parts
-  const stringValue = convertedPrice.toString()
-  const [intValue, floatValue] = stringValue?.includes('.')
-    ? stringValue.split('.')
-    : [stringValue, '']
+  const [intValue, floatValue] = convertedPrice.toString().includes('.') 
+    ? convertedPrice.toString().split('.') 
+    : [convertedPrice.toString(), '']
 
-  // Format price with currency
+  // Format prices
   const formattedPrice = format.number(convertedPrice, {
     style: 'currency',
     currency: currency.code,
     currencyDisplay: 'narrowSymbol',
   })
 
-  // Format list price with currency
   const formattedListPrice = format.number(convertedListPrice, {
     style: 'currency',
     currency: currency.code,
     currencyDisplay: 'narrowSymbol',
   })
 
+  // Plain price display (simplest case)
   if (plain) {
     return <span className={className}>{formattedPrice}</span>
   }
 
+  // No list price case
   if (convertedListPrice === 0) {
     return (
       <div className={cn('flex items-baseline', className)}>
-        <span className="text-sm font-medium text-gray-500">{currency.symbol}</span>
-        <span className="text-2xl font-bold text-gray-900">{intValue}</span>
+        <span className={`text-2xl  font-medium ${colors.secondary}`}>{currency.symbol}</span>
+        <span className={`text-2xl font-bold ${colors.primary}`}>{intValue}</span>
         {floatValue && (
-          <span className="text-sm font-medium text-gray-500">.{floatValue}</span>
+          <span className={`text-sm font-medium ${colors.secondary}`}>.{floatValue}</span>
         )}
       </div>
     )
   }
 
+  // Full price display with discounts
   return (
     <div className={cn('space-y-1', !forListing && 'w-full', className)}>
-      {/* Discount badge */}
+      {/* Discount badges */}
       {(isDeal || discountPercent > 0) && (
         <div className={cn(
           'flex items-center gap-2',
           forListing ? 'justify-center' : 'justify-start'
         )}>
           {isDeal && (
-            <span className="bg-red-600  px-2 py-1 text-xs font-bold text-white">
+            <span className={`px-2 py-1 text-xs font-bold ${colors.limitedDealBackground} ${colors.dealAccent}`}>
               {t('Product.Limited time deal')}
             </span>
           )}
           <span className={cn(
-            ' px-2 py-1 text-xs font-bold',
-            isDeal ? 'bg-orange-500 text-white' : 'bg-orange-100 text-orange-800'
+            'px-2 py-1 text-xs font-bold',
+            isDeal 
+              ? `${colors.dealBackground} ${colors.dealAccent}`
+              : `${colors.accentBackground} ${colors.accent}`
           )}>
             {discountPercent}% {t('Product.Off')}
           </span>
@@ -98,27 +110,26 @@ const ProductPrice = ({
         forListing ? 'justify-center' : 'justify-start'
       )}>
         <div className="flex items-baseline">
-          <span className="text-sm font-medium text-gray-500">{currency.symbol}</span>
-          <span className="text-2xl font-bold text-gray-900">{intValue}</span>
+          <span className={`text-2xl  ${colors.secondary}`}>{currency.symbol}</span>
+          <span className={`text-2xl font-bold ${colors.primary}`}>{intValue}</span>
           {floatValue && (
-            <span className="text-sm font-medium text-gray-500">.{floatValue}</span>
+            <span className={`text-sm font-medium ${colors.secondary}`}>.{floatValue}</span>
           )}
         </div>
 
         {/* Original price */}
         {convertedListPrice > 0 && (
-          <div className="text-sm text-gray-500">
-            <span className="line-through">{formattedListPrice}</span>
-            {!isDeal && (
-              <span className="ml-1">{t('Product.Was')}</span>
-            )}
+          <div className={`text-sm ${colors.secondary}`}>
+            {!isDeal && <span className="mx-1">{t('Product.Was')}</span>}
+            <span className={colors.strikeThrough}>{formattedListPrice}</span>
+            
           </div>
         )}
       </div>
 
-      {/* You save message for non-deal discounts */}
+      {/* Savings message */}
       {!isDeal && discountPercent > 0 && (
-        <div className="text-xs text-green-600">
+        <div className={`text-xs ${colors.savings}`}>
           You Save {formattedListPrice} ({discountPercent}%)
         </div>
       )}

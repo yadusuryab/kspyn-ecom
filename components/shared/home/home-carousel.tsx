@@ -25,43 +25,89 @@ export function HomeCarousel({ items }: { items: ICarousel[] }) {
 
   return (
     <Carousel
-      dir='ltr'
+      dir="ltr"
       plugins={[plugin.current]}
-      className='w-full mx-auto'
+      className="w-full mx-auto relative group"
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
-      <CarouselContent className=''>
+      <CarouselContent>
         {items?.map((item) => (
           <CarouselItem key={item.title}>
-            <Link href={item.url}>
-              <div className='flex aspect-[16/6] items-center justify-center p-6 relative -m-1'>
+            <Link href={item.url} className="block relative">
+              {/* Mobile Portrait Layout */}
+              <div className="md:hidden flex flex-col aspect-[9/10] items-center justify-end pb-8 relative overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className='object-cover'
+                  className="object-cover"
                   priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                <div className='absolute w-1/3 left-16 md:left-32 top-1/2 transform -translate-y-1/2'>
-                  <h2
-                    className={cn(
-                      'text-xl md:text-6xl font-bold mb-4 text-primary tracking-tighter '
-                    )}
-                  >
-                    {`${item.title}`}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+                
+                <div className="relative z-10 w-full px-6 text-center space-y-4">
+                  <h2 className={cn(
+                    "text-3xl font-bold leading-tight",
+                    "text-primary-foreground drop-shadow-lg"
+                  )}>
+                    {item.title}
                   </h2>
-                  <Button className='hidden md:block'>
-                    {t(`${item.buttonCaption}`)}
+                  <Button 
+                    size="lg"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  >
+                    {t(item.buttonCaption)}
                   </Button>
+                </div>
+              </div>
+
+              {/* Desktop Landscape Layout */}
+              <div className="hidden md:flex aspect-[16/6] items-center justify-center relative overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/30 to-transparent" />
+                
+                <div className="container relative z-10 h-full flex flex-col justify-center px-8">
+                  <div className="max-w-md space-y-4">
+                    <h2 className={cn(
+                      "text-4xl lg:text-5xl font-bold leading-tight",
+                      "text-primary-foreground drop-shadow-md"
+                    )}>
+                      {item.title}
+                    </h2>
+                    <Button 
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                    >
+                      {t(item.buttonCaption)}
+                    </Button>
+                  </div>
                 </div>
               </div>
             </Link>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className='left-0 md:left-12' />
-      <CarouselNext className='right-0 md:right-12' />
+      
+      {/* Navigation Arrows - Hidden on mobile */}
+      <CarouselPrevious 
+        className="hidden md:flex left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        variant="secondary"
+        size="lg"
+      />
+      <CarouselNext 
+        className="hidden md:flex right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        variant="secondary"
+        size="lg"
+      />
     </Carousel>
   )
 }

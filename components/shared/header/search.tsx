@@ -25,10 +25,10 @@ export default async function Search() {
     <form
       action="/search"
       method="GET"
-      className="flex bg-secondary  items-center shadow-sm h-10 px-1 py-2"
+      className="flex bg-secondary  items-center  shadow-sm p-1 rounded-full  "
     >
       <Select name="category">
-        <SelectTrigger className="w-auto  bg-background     ">
+        <SelectTrigger className="w-auto  bg-background    rounded-full ">
           <SelectValue placeholder={t("Header.All")} />
         </SelectTrigger>
         <SelectContent position="popper">
@@ -41,12 +41,12 @@ export default async function Search() {
         </SelectContent>
       </Select>
       <input
-        className="flex-1 -none  text-base h-full"
+        className="flex-1 -none bg-secondary outline-none px-2 text-secondary-foreground text-base h-full"
         placeholder={t("Header.Search Site", { name })}
         name="q"
         type="search"
       />
-      <Button type="submit" size={"icon"} className="">
+      <Button type="submit" size={"icon"} className="rounded-full">
         <SearchIcon />
       </Button>
     </form>

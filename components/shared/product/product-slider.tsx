@@ -21,36 +21,60 @@ export default function ProductSlider({
   hideDetails?: boolean
 }) {
   return (
-    <div className='w-full bg-background '>
-      <h2 className='h2 font-bold mb-5 tracking-tighter'>{title}</h2>
+    <div className="w-full bg-background space-y-6 p-2">
+      {title && (
+        <h2 className="text-2xl font-bold tracking-tight px-4 md:px-6">
+          {title}
+        </h2>
+      )}
+      
       <Carousel
         opts={{
           align: 'start',
+          slidesToScroll: 'auto',
         }}
-        className='w-full '
+        className="w-full relative group"
       >
-        <CarouselContent>
+        <CarouselContent className="px-4 md:px-6">
           {products?.map((product) => (
             <CarouselItem
               key={product.slug}
-              className={
-                hideDetails
-                  ? 'md:basis-1/4 lg:basis-1/6'
-                  : 'md:basis-1/3 lg:basis-1/5'
-              }
+              className={cn(
+                'basis-1/2', // Default mobile size
+                hideDetails 
+                  ? 'sm:basis-1/3 md:basis-1/4 lg:basis-1/6' 
+                  : 'sm:basis-1/2 md:basis-1/3 lg:basis-1/4'
+              )}
             >
-              <ProductCard
-                hideDetails={hideDetails}
-                hideAddToCart
-                hideBorder
-                product={product}
-              />
+              <div className="p-1 h-full"> {/* Padding for perfect spacing */}
+                <ProductCard
+                  hideDetails={hideDetails}
+                  hideAddToCart
+                  hideBorder
+                  product={product}
+                  // Ensure equal height
+                />
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className='left-0' />
-        <CarouselNext className='right-0' />
+
+        {/* Navigation with hover effect */}
+        <CarouselPrevious 
+          className="left-2 opacity-0 group-hover:opacity-100 transition-opacity"
+          variant="ghost"
+          size="sm"
+        />
+        <CarouselNext 
+          className="right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+          variant="ghost"
+          size="sm"
+        />
       </Carousel>
     </div>
   )
+}
+
+function cn(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
 }

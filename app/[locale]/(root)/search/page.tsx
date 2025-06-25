@@ -1,5 +1,4 @@
 import Link from 'next/link'
-
 import Pagination from '@/components/shared/pagination'
 import ProductCard from '@/components/shared/product/product-card'
 import { Button } from '@/components/ui/button'
@@ -12,7 +11,6 @@ import { IProduct } from '@/lib/db/models/product.model'
 import ProductSortSelector from '@/components/shared/product/product-sort-selector'
 import { getFilterUrl, toSlug } from '@/lib/utils'
 import Rating from '@/components/shared/product/rating'
-
 import CollapsibleOnMobile from '@/components/shared/collapsible-on-mobile'
 import { getTranslations } from 'next-intl/server'
 
@@ -25,61 +23,11 @@ const sortOrders = [
 ]
 
 const prices = [
-  {
-    name: '$1 to $20',
-    value: '1-20',
-  },
-  {
-    name: '$21 to $50',
-    value: '21-50',
-  },
-  {
-    name: '$51 to $1000',
-    value: '51-1000',
-  },
+  { name: '₹100 - ₹500', value: '100-500' },
+  { name: '₹500 - ₹1000', value: '500-1000' },
+  { name: '₹1000 - ₹5000', value: '1000-5000' },
+  { name: '₹5000+', value: '5000-100000' },
 ]
-
-export async function generateMetadata(props: {
-  searchParams: Promise<{
-    q: string
-    category: string
-    tag: string
-    price: string
-    rating: string
-    sort: string
-    page: string
-  }>
-}) {
-  const searchParams = await props.searchParams
-  const t = await getTranslations()
-  const {
-    q = 'all',
-    category = 'all',
-    tag = 'all',
-    price = 'all',
-    rating = 'all',
-  } = searchParams
-
-  if (
-    (q !== 'all' && q !== '') ||
-    category !== 'all' ||
-    tag !== 'all' ||
-    rating !== 'all' ||
-    price !== 'all'
-  ) {
-    return {
-      title: `${t('Search.Search')} ${q !== 'all' ? q : ''}
-          ${category !== 'all' ? ` : ${t('Search.Category')} ${category}` : ''}
-          ${tag !== 'all' ? ` : ${t('Search.Tag')} ${tag}` : ''}
-          ${price !== 'all' ? ` : ${t('Search.Price')} ${price}` : ''}
-          ${rating !== 'all' ? ` : ${t('Search.Rating')} ${rating}` : ''}`,
-    }
-  } else {
-    return {
-      title: t('Search.Search Products'),
-    }
-  }
-}
 
 export default async function SearchPage(props: {
   searchParams: Promise<{
@@ -93,7 +41,6 @@ export default async function SearchPage(props: {
   }>
 }) {
   const searchParams = await props.searchParams
-
   const {
     q = 'all',
     category = 'all',
@@ -118,43 +65,66 @@ export default async function SearchPage(props: {
     sort,
   })
   const t = await getTranslations()
+
   return (
-    <div>
-      <div className='my-2 bg-card md:border-b  flex-between flex-col md:flex-row '>
-        <div className='flex items-center'>
-          {data.totalProducts === 0
-            ? t('Search.No')
-            : `${data.from}-${data.to} ${t('Search.of')} ${
-                data.totalProducts
-              }`}{' '}
-          {t('Search.results')}
-          {(q !== 'all' && q !== '') ||
-          (category !== 'all' && category !== '') ||
-          (tag !== 'all' && tag !== '') ||
-          rating !== 'all' ||
-          price !== 'all'
-            ? ` ${t('Search.for')} `
-            : null}
-          {q !== 'all' && q !== '' && '"' + q + '"'}
-          {category !== 'all' &&
-            category !== '' &&
-            `   ${t('Search.Category')}: ` + category}
-          {tag !== 'all' && tag !== '' && `   ${t('Search.Tag')}: ` + tag}
-          {price !== 'all' && `    ${t('Search.Price')}: ` + price}
-          {rating !== 'all' &&
-            `    ${t('Search.Rating')}: ` + rating + ` & ${t('Search.up')}`}
-          &nbsp;
-          {(q !== 'all' && q !== '') ||
-          (category !== 'all' && category !== '') ||
-          (tag !== 'all' && tag !== '') ||
-          rating !== 'all' ||
-          price !== 'all' ? (
-            <Button variant={'link'} asChild>
-              <Link href='/search'>{t('Search.Clear')}</Link>
-            </Button>
-          ) : null}
-        </div>
-        <div>
+    <div className="container mx-auto px-4 py-6">
+      {/* Results Header */}
+      <div className="mb-6 p-4 bg-card rounded-lg border">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="text-sm">
+            {data.totalProducts === 0 ? (
+              t('Search.No')
+            ) : (
+              <>
+                <span className="font-medium">{data.from}-{data.to}</span> {t('Search.of')}{' '}
+                <span className="font-medium">{data.totalProducts}</span> {t('Search.results')}
+              </>
+            )}
+            
+            {(q !== 'all' && q !== '') ||
+            category !== 'all' ||
+            tag !== 'all' ||
+            rating !== 'all' ||
+            price !== 'all' ? (
+              <span className="text-muted-foreground">
+                {' '}{t('Search.for')}{' '}
+                {q !== 'all' && q !== '' && <span className="font-medium">&quot;{q}&quot;</span>}
+                {category !== 'all' && (
+                  <span className="ml-1">
+                    {t('Search.Category')}: <span className="font-medium">{category}</span>
+                  </span>
+                )}
+                {tag !== 'all' && (
+                  <span className="ml-1">
+                    {t('Search.Tag')}: <span className="font-medium">{tag}</span>
+                  </span>
+                )}
+                {price !== 'all' && (
+                  <span className="ml-1">
+                    {t('Search.Price')}: <span className="font-medium">
+                      {prices.find(p => p.value === price)?.name}
+                    </span>
+                  </span>
+                )}
+                {rating !== 'all' && (
+                  <span className="ml-1">
+                    {t('Search.Rating')}: <span className="font-medium">{rating}+</span>
+                  </span>
+                )}
+              </span>
+            ) : null}
+
+            {((q !== 'all' && q !== '') ||
+              category !== 'all' ||
+              tag !== 'all' ||
+              rating !== 'all' ||
+              price !== 'all') && (
+              <Button variant="link" size="sm" className="ml-2 p-0 h-auto" asChild>
+                <Link href="/search">{t('Search.Clear')}</Link>
+              </Button>
+            )}
+          </div>
+
           <ProductSortSelector
             sortOrders={sortOrders}
             sort={sort}
@@ -162,127 +132,160 @@ export default async function SearchPage(props: {
           />
         </div>
       </div>
-      <div className='bg-card grid md:grid-cols-5 md:gap-4'>
-        <CollapsibleOnMobile title={t('Search.Filters')}>
-          <div className='space-y-4'>
-            <div>
-              <div className='font-bold'>{t('Search.Department')}</div>
-              <ul>
-                <li>
-                  <Link
-                    className={`${
-                      ('all' === category || '' === category) && 'text-primary'
-                    }`}
-                    href={getFilterUrl({ category: 'all', params })}
-                  >
-                    {t('Search.All')}
-                  </Link>
-                </li>
-                {categories?.map((c: string) => (
-                  <li key={c}>
-                    <Link
-                      className={`${c === category && 'text-primary'}`}
-                      href={getFilterUrl({ category: c, params })}
-                    >
-                      {c}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <div className='font-bold'>{t('Search.Price')}</div>
-              <ul>
-                <li>
-                  <Link
-                    className={`${'all' === price && 'text-primary'}`}
-                    href={getFilterUrl({ price: 'all', params })}
-                  >
-                    {t('Search.All')}
-                  </Link>
-                </li>
-                {prices?.map((p) => (
-                  <li key={p.value}>
-                    <Link
-                      href={getFilterUrl({ price: p.value, params })}
-                      className={`${p.value === price && 'text-primary'}`}
-                    >
-                      {p.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <div className='font-bold'>{t('Search.Customer Review')}</div>
-              <ul>
-                <li>
-                  <Link
-                    href={getFilterUrl({ rating: 'all', params })}
-                    className={`${'all' === rating && 'text-primary'}`}
-                  >
-                    {t('Search.All')}
-                  </Link>
-                </li>
 
-                <li>
-                  <Link
-                    href={getFilterUrl({ rating: '4', params })}
-                    className={`${'4' === rating && 'text-primary'}`}
-                  >
-                    <div className='flex'>
-                      <Rating size={4} rating={4} /> {t('Search.& Up')}
-                    </div>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <div className='font-bold'>{t('Search.Tag')}</div>
-              <ul>
-                <li>
-                  <Link
-                    className={`${
-                      ('all' === tag || '' === tag) && 'text-primary'
-                    }`}
-                    href={getFilterUrl({ tag: 'all', params })}
-                  >
-                    {t('Search.All')}
-                  </Link>
-                </li>
-                {tags?.map((t: string) => (
-                  <li key={t}>
+      {/* Main Content */}
+      <div className="grid md:grid-cols-5 gap-6">
+        {/* Filters Sidebar */}
+        <div className="md:col-span-1">
+          <CollapsibleOnMobile title={t('Search.Filters')}>
+            <div className="space-y-6 p-4 bg-card rounded-lg border">
+              {/* Categories */}
+              <div>
+                <h3 className="font-bold mb-3">{t('Search.Department')}</h3>
+                <ul className="space-y-2">
+                  <li>
                     <Link
-                      className={`${toSlug(t) === tag && 'text-primary'}`}
-                      href={getFilterUrl({ tag: t, params })}
+                      className={`block py-1 hover:text-primary ${
+                        ('all' === category || '' === category) && 'text-primary font-medium'
+                      }`}
+                      href={getFilterUrl({ category: 'all', params })}
                     >
-                      {t}
+                      {t('Search.All')}
                     </Link>
                   </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </CollapsibleOnMobile>
+                  {categories?.map((c: string) => (
+                    <li key={c}>
+                      <Link
+                        className={`block py-1 hover:text-primary ${
+                          c === category && 'text-primary font-medium'
+                        }`}
+                        href={getFilterUrl({ category: c, params })}
+                      >
+                        {c}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-        <div className='md:col-span-4 space-y-4'>
-          <div>
-            <div className='font-bold text-xl'>{t('Search.Results')}</div>
-            <div>
+              {/* Price */}
+              <div>
+                <h3 className="font-bold mb-3">{t('Search.Price')}</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      className={`block py-1 hover:text-primary ${
+                        'all' === price && 'text-primary font-medium'
+                      }`}
+                      href={getFilterUrl({ price: 'all', params })}
+                    >
+                      {t('Search.All')}
+                    </Link>
+                  </li>
+                  {prices?.map((p) => (
+                    <li key={p.value}>
+                      <Link
+                        className={`block py-1 hover:text-primary ${
+                          p.value === price && 'text-primary font-medium'
+                        }`}
+                        href={getFilterUrl({ price: p.value, params })}
+                      >
+                        {p.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Rating */}
+              <div>
+                <h3 className="font-bold mb-3">{t('Search.Customer Review')}</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      className={`block py-1 hover:text-primary ${
+                        'all' === rating && 'text-primary font-medium'
+                      }`}
+                      href={getFilterUrl({ rating: 'all', params })}
+                    >
+                      {t('Search.All')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className={`block py-1 hover:text-primary ${
+                        '4' === rating && 'text-primary font-medium'
+                      }`}
+                      href={getFilterUrl({ rating: '4', params })}
+                    >
+                      <div className="flex items-center">
+                        <Rating size={4} rating={4} />
+                        <span className="ml-2">{t('Search.& Up')}</span>
+                      </div>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Tags */}
+              <div>
+                <h3 className="font-bold mb-3">{t('Search.Tag')}</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      className={`block py-1 hover:text-primary ${
+                        ('all' === tag || '' === tag) && 'text-primary font-medium'
+                      }`}
+                      href={getFilterUrl({ tag: 'all', params })}
+                    >
+                      {t('Search.All')}
+                    </Link>
+                  </li>
+                  {tags?.map((t: string) => (
+                    <li key={t}>
+                      <Link
+                        className={`block py-1 hover:text-primary ${
+                          toSlug(t) === tag && 'text-primary font-medium'
+                        }`}
+                        href={getFilterUrl({ tag: t, params })}
+                      >
+                        {t}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </CollapsibleOnMobile>
+        </div>
+
+        {/* Products Grid */}
+        <div className="md:col-span-4">
+          <div className="mb-6">
+            <h2 className="text-xl font-bold">{t('Search.Results')}</h2>
+            <p className="text-sm text-muted-foreground">
               {t('Search.Check each product page for other buying options')}
-            </div>
+            </p>
           </div>
 
-          <div className='grid grid-cols-1 gap-4 md:grid-cols-2  lg:grid-cols-3  '>
-            {data.products.length === 0 && (
-              <div>{t('Search.No product found')}</div>
-            )}
-            {data.products?.map((product: IProduct) => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
-          {data.totalPages > 1 && (
-            <Pagination page={page} totalPages={data.totalPages} />
+          {data.products.length === 0 ? (
+            <div className="py-12 text-center">
+              <p>{t('Search.No product found')}</p>
+            </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {data.products?.map((product: IProduct) => (
+                  <ProductCard key={product._id} product={product} />
+                ))}
+              </div>
+
+              {data.totalPages > 1 && (
+                <div className="mt-8">
+                  <Pagination page={page} totalPages={data.totalPages} />
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

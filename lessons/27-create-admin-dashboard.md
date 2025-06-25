@@ -608,7 +608,7 @@ export default function SalesAreaChart({ data }: { data: any[] }) {
       <AreaChart data={data}>
         <CartesianGrid horizontal={true} vertical={false} stroke='' />
         <XAxis dataKey='date' tick={<CustomXAxisTick />} interval={3} />
-        <YAxis fontSize={12} tickFormatter={(value: number) => `$${value}`} />
+        <YAxis fontSize={12} tickFormatter={(value: number) => `₹${value}`} />
         <Tooltip content={<CustomTooltip />} />
         <Area
           type='monotone'
