@@ -26,7 +26,7 @@ const ProductCard = ({
 }: ProductCardProps) => {
   const ProductImage = () => (
     <Link href={`/product/${product.slug}`} className="block">
-      <div className="relative  h-full w-full bg-secondary rounded-lg overflow-hidden group">
+      <div className="relative aspect-square  h-full w-full bg-secondary rounded-lg overflow-hidden group">
   {product.images.length > 1 ? (
     <ImageHover
       src={product.images[0]}

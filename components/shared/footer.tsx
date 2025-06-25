@@ -35,7 +35,7 @@ export default function Footer() {
           {t('Footer.Back to top')}
         </Button>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-7xl mx-auto'>
-          <div>
+          {/* <div>
             <h3 className='font-bold mb-2'>{t('Footer.Get to Know Us')}</h3>
             <ul className='space-y-2'>
               <li>
@@ -50,7 +50,7 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
           {/* <div>
             <h3 className='font-bold mb-2'>{t('Footer.Make Money with Us')}</h3>
             <ul className='space-y-2'>
