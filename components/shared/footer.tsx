@@ -27,12 +27,12 @@ export default function Footer() {
     <footer className='bg-background underline-link'>
       <div className='w-full'>
         <Button
-          variant='ghost'
-          className='bg-secondary w-full  -none '
+         
+          size={'icon'}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <ChevronUp className='mr-2 h-4 w-4' />
-          {t('Footer.Back to top')}
+          {/* {t('Footer.Back to top')} */}
         </Button>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-7xl mx-auto'>
           {/* <div>
