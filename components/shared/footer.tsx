@@ -2,6 +2,7 @@
 import { ChevronUp } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect, useState } from 'react' // Add these imports
 
 import { Button } from '@/components/ui/button'
 import useSettingStore from '@/hooks/use-setting-store'
@@ -23,54 +24,42 @@ export default function Footer() {
 
   const locale = useLocale()
   const t = useTranslations()
+  
+  // Add scroll state management
+  const [isVisible, setIsVisible] = useState(false)
+  
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true)
+      } else {
+        setIsVisible(false)
+      }
+    }
+    
+    window.addEventListener('scroll', toggleVisibility)
+    
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility)
+    }
+  }, [])
+
   return (
-    <footer className='bg-background underline-link'>
+    <footer className='bg-background underline-link relative'>
       <div className='w-full'>
-        <Button
-         
-          size={'icon'}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        >
-          <ChevronUp className='mr-2 h-4 w-4' />
-          {/* {t('Footer.Back to top')} */}
-        </Button>
+        {/* Floating Back to Top Button */}
+        {isVisible && (
+          <Button
+            className='fixed bottom-6 right-6 z-50 rounded-full p-2 shadow-lg'
+            size={'icon'}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            <ChevronUp className='h-4 w-4' />
+          </Button>
+        )}
+        
+        {/* Rest of your footer content remains the same */}
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-7xl mx-auto'>
-          {/* <div>
-            <h3 className='font-bold mb-2'>{t('Footer.Get to Know Us')}</h3>
-            <ul className='space-y-2'>
-              <li>
-                <Link href='/page/careers'>{t('Footer.Careers')}</Link>
-              </li>
-              <li>
-                <Link href='/page/blog'>{t('Footer.Blog')}</Link>
-              </li>
-              <li>
-                <Link href='/page/about-us'>
-                  {t('Footer.About name', { name: site.name })}
-                </Link>
-              </li>
-            </ul>
-          </div> */}
-          {/* <div>
-            <h3 className='font-bold mb-2'>{t('Footer.Make Money with Us')}</h3>
-            <ul className='space-y-2'>
-              <li>
-                <Link href='/page/sell'>
-                  {t('Footer.Sell products on', { name: site.name })}
-                </Link>
-              </li>
-              <li>
-                <Link href='/page/become-affiliate'>
-                  {t('Footer.Become an Affiliate')}
-                </Link>
-              </li>
-              <li>
-                <Link href='/page/advertise'>
-                  {t('Footer.Advertise Your Products')}
-                </Link>
-              </li>
-            </ul>
-          </div> */}
           <div>
             <h3 className='font-bold mb-2'>{t('Footer.Let Us Help You')}</h3>
             <ul className='space-y-2'>
