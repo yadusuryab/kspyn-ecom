@@ -38,7 +38,7 @@ export default async function HomePage() {
       },
       items: categories?.map((category) => ({
         name: category,
-        image: `/images/${toSlug(category)}.jpg`,
+        image: `/images/${toSlug(category)}.png`,
         href: `/search?category=${category}`,
       })),
     },

@@ -27,6 +27,18 @@ import { IProductInput } from '@/types'
 import { X, Plus } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { useState } from 'react'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+
+// Predefined options from the product data
+const CATEGORIES = ['T-Shirts', 'Jeans', 'Wrist Watches', 'Shoes'] as const
+const TAGS = ['new-arrival', 'featured', 'best-seller', 'todays-deal'] as const
 
 const productDefaultValues: IProductInput =
   process.env.NODE_ENV === 'development'
@@ -84,7 +96,6 @@ const ProductForm = ({
   const { toast } = useToast()
   const [newColor, setNewColor] = useState('')
   const [newSize, setNewSize] = useState('')
-  const [newTag, setNewTag] = useState('')
 
   const form = useForm<IProductInput>({
     resolver:
@@ -130,6 +141,7 @@ const ProductForm = ({
   const images = form.watch('images')
   const colors = form.watch('colors')
   const sizes = form.watch('sizes')
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const tags = form.watch('tags')
 
   const handleAddColor = () => {
@@ -152,17 +164,6 @@ const ProductForm = ({
 
   const handleRemoveSize = (sizeToRemove: string) => {
     form.setValue('sizes', sizes?.filter(size => size !== sizeToRemove))
-  }
-
-  const handleAddTag = () => {
-    if (newTag && !tags?.includes(newTag)) {
-      form.setValue('tags', [...tags, newTag])
-      setNewTag('')
-    }
-  }
-
-  const handleRemoveTag = (tagToRemove: string) => {
-    form.setValue('tags', tags?.filter(tag => tag !== tagToRemove))
   }
 
   const handleRemoveImage = (imageToRemove: string) => {
@@ -228,9 +229,20 @@ const ProductForm = ({
             render={({ field }) => (
               <FormItem className='w-full'>
                 <FormLabel>Category</FormLabel>
-                <FormControl>
-                  <Input placeholder='Enter category' {...field} />
-                </FormControl>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a category" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {CATEGORIES.map((category) => (
+                      <SelectItem key={category} value={category}>
+                        {category}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -451,52 +463,68 @@ const ProductForm = ({
           />
         </div>
 
-        {/* Tags Section */}
-        <div>
-          <FormField
-            control={form.control}
-            name='tags'
-            render={() => (
-              <FormItem className='w-full'>
-                <FormLabel>Tags</FormLabel>
-                <div className='flex flex-wrap gap-2 mb-2'>
-                  {tags?.map((tag) => (
-                    <Badge 
-                      key={tag} 
-                      variant='outline'
-                      className='flex items-center gap-1'
-                    >
-                      {tag}
-                      <button
-                        type='button'
-                        onClick={() => handleRemoveTag(tag)}
-                        className='text-red-500'
-                      >
-                        <X className='h-3 w-3' />
-                      </button>
-                    </Badge>
-                  ))}
-                </div>
-                <div className='flex gap-2'>
-                  <Input
-                    placeholder='Add tag'
-                    value={newTag}
-                    onChange={(e) => setNewTag(e.target.value)}
-                  />
-                  <Button
-                    type='button'
-                    variant='outline'
-                    size='sm'
-                    onClick={handleAddTag}
-                  >
-                    <Plus className='h-4 w-4' />
-                  </Button>
-                </div>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        {/* Tags Section - Now with predefined options */}
+      
+
+
+<div>
+  <FormField
+    control={form.control}
+    name='tags'
+    render={({ field }) => (
+      <FormItem className='w-full'>
+        <FormLabel>Tags</FormLabel>
+        <div className='flex flex-wrap gap-2 mb-2'>
+          {field.value?.map((tag) => (
+            <Badge 
+              key={tag} 
+              variant='outline'
+              className='flex items-center gap-1'
+            >
+              {tag}
+              <button
+                type='button'
+                onClick={() => {
+                  form.setValue('tags', field.value?.filter(t => t !== tag) || [])
+                }}
+                className='text-red-500'
+              >
+                <X className='h-3 w-3' />
+              </button>
+            </Badge>
+          ))}
         </div>
+        <Select
+          onValueChange={(value) => {
+            if (value && !field.value?.includes(value)) {
+              form.setValue('tags', [...(field.value || []), value])
+            }
+          }}
+        >
+          <FormControl>
+            <SelectTrigger>
+              <SelectValue placeholder="Select a tag to add" />
+            </SelectTrigger>
+          </FormControl>
+          <SelectContent>
+            {TAGS.map((tag) => (
+              <SelectItem 
+                key={tag} 
+                value={tag}
+                disabled={field.value?.includes(tag)}
+              >
+                {tag}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <FormMessage />
+      </FormItem>
+    )}
+  />
+</div>
+
+
 
         <div>
           <FormField
