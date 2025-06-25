@@ -70,10 +70,10 @@ const ProductPrice = ({
   if (convertedListPrice === 0) {
     return (
       <div className={cn('flex items-baseline', className)}>
-        <span className={`text-2xl  font-medium ${colors.secondary}`}>{currency.symbol}</span>
-        <span className={`text-2xl font-bold ${colors.primary}`}>{intValue}</span>
+        <span className={`text-2xl  font-medium text-foreground`}>{currency.symbol}</span>
+        <span className={`text-2xl font-bold text-foreground`}>{intValue}</span>
         {floatValue && (
-          <span className={`text-sm font-medium ${colors.secondary}`}>.{floatValue}</span>
+          <span className={`text-sm font-medium text-muted-foreground`}>.{floatValue}</span>
         )}
       </div>
     )
@@ -110,16 +110,16 @@ const ProductPrice = ({
         forListing ? 'justify-center' : 'justify-start'
       )}>
         <div className="flex items-baseline">
-          <span className={`text-2xl  ${colors.secondary}`}>{currency.symbol}</span>
-          <span className={`text-2xl font-bold ${colors.primary}`}>{intValue}</span>
+          <span className={`text-2xl  text-muted-foreground`}>{currency.symbol}</span>
+          <span className={`text-2xl font-bold text-foreground`}>{intValue}</span>
           {floatValue && (
-            <span className={`text-sm font-medium ${colors.secondary}`}>.{floatValue}</span>
+            <span className={`text-sm font-medium text-muted-foreground`}>.{floatValue}</span>
           )}
         </div>
 
         {/* Original price */}
         {convertedListPrice > 0 && (
-          <div className={`text-sm ${colors.secondary}`}>
+          <div className={`text-sm text-muted-foreground`}>
             {!isDeal && <span className="mx-1">{t('Product.Was')}</span>}
             <span className={colors.strikeThrough}>{formattedListPrice}</span>
             
