@@ -42,7 +42,7 @@ export default async function Header() {
           <Search />
         </div>
       </div>
-      <div className='flex  items-center sticky px-3 mb-[1px] py-1'>
+      <div className='flex  items-center overflow-hidden sticky px-3 mb-[1px] py-1'>
         <Sidebar categories={categories} />
         <div className="relative w-full">
   {/* Scrollable menu container */}
@@ -64,7 +64,6 @@ export default async function Header() {
   </div>
 
   {/* Fade effect for scroll indication */}
-  <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent pointer-events-none" />
 </div>
       </div>
     </header>

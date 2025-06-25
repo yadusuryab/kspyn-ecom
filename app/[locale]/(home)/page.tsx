@@ -71,18 +71,18 @@ export default async function HomePage() {
   return (
     <>
       <HomeCarousel items={carousels} />
-      <div className='md:p-4 md:space-y-4 bg-border'>
+      <div className='md:p-4 md:space-y-4 bg-border p-4'>
         <HomeCard cards={cards} />
        
             <ProductSlider title={t("Today's Deals")} products={todaysDeals} />
         
-      
+       
             <ProductSlider
               title={t('Best Selling Products')}
               products={bestSellingProducts}
               hideDetails
             />
-         
+          
       </div>
 
       <div className='p-4 bg-background'>

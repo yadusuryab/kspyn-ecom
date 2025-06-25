@@ -21,7 +21,7 @@ export default function ProductSlider({
   hideDetails?: boolean
 }) {
   return (
-    <div className="w-full bg-background space-y-6 p-2">
+    <div className="w-full bg-background space-y-6 p-2 mt-4">
       {title && (
         <h2 className="text-2xl font-bold tracking-tight px-4 md:px-6">
           {title}
@@ -40,7 +40,7 @@ export default function ProductSlider({
             <CarouselItem
               key={product.slug}
               className={cn(
-                'basis-1/2', // Default mobile size
+                'basis-full', // Default mobile size
                 hideDetails 
                   ? 'sm:basis-1/3 md:basis-1/4 lg:basis-1/6' 
                   : 'sm:basis-1/2 md:basis-1/3 lg:basis-1/4'

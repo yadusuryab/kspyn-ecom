@@ -1,4 +1,3 @@
-import { Geist_Mono, Inter } from 'next/font/google'
 import '../globals.css'
 import ClientProviders from '@/components/shared/client-providers'
 import { getDirection } from '@/i18n-config'
@@ -9,15 +8,8 @@ import { notFound } from 'next/navigation'
 import { getSetting } from '@/lib/actions/setting.actions'
 import { cookies } from 'next/headers'
 
-const geistSans = Inter({
- 
-  subsets: ['latin'],
-})
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
+
 
 export async function generateMetadata() {
   const {
@@ -59,7 +51,7 @@ export default async function AppLayout({
       suppressHydrationWarning
     >
       <body
-        className={`min-h-screen ${geistSans.className} ${geistMono.variable} antialiased`}
+        className={`min-h-screen antialiased`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ClientProviders setting={{ ...setting, currency }}>

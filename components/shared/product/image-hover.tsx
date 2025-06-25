@@ -36,7 +36,7 @@ const ImageHover = ({
         fill
         sizes='80vw'
       style={{ backgroundColor: '#f3f4f6' }} 
-        className={`object-cover absolute inset-0 w-full h-full transition-opacity duration-300 ${
+        className={`object-contain absolute inset-0 w-full h-full transition-opacity duration-300 ${
           isHovered ? 'opacity-0' : 'opacity-100'
         }`}
       />

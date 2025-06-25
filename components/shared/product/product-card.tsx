@@ -26,7 +26,7 @@ const ProductCard = ({
 }: ProductCardProps) => {
   const ProductImage = () => (
     <Link href={`/product/${product.slug}`} className="block">
-      <div className="relative  w-full bg-secondary rounded-lg overflow-hidden group">
+      <div className="relative  h-full w-full bg-secondary rounded-lg overflow-hidden group">
   {product.images.length > 1 ? (
     <ImageHover
       src={product.images[0]}
@@ -40,7 +40,7 @@ const ProductCard = ({
       alt={product.name}
       fill
       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-      className="object-cover transition-transform duration-300 group-hover:scale-105"
+      className="object-contain transition-transform duration-300 group-hover:scale-105"
       style={{ backgroundColor: '#f3f4f6' }} // subtle fallback color
       priority
     />
