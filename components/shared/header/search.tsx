@@ -1,4 +1,4 @@
-import { SearchIcon } from "lucide-react";
+// import { SearchIcon } from "lucide-react";
 
 // import { Input } from "@/components/ui/input";
 import { getAllCategories } from "@/lib/actions/product.actions";
@@ -12,7 +12,9 @@ import {
 } from "../../ui/select";
 import { getSetting } from "@/lib/actions/setting.actions";
 import { getTranslations } from "next-intl/server";
+import {  TbSearch } from "react-icons/tb";
 import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 
 export default async function Search() {
   const {
@@ -41,13 +43,13 @@ export default async function Search() {
         </SelectContent>
       </Select>
       <input
-        className="flex-1 -none bg-secondary outline-none px-2 text-secondary-foreground text-base h-full"
+        className=" bg-secondary outline-none flex-1  placeholder:font-medium px-2 text-secondary-foreground text-base h-full"
         placeholder={t("Header.Search Site", { name })}
         name="q"
         type="search"
       />
-      <Button type="submit" size={"icon"} className="rounded-full">
-        <SearchIcon />
+      <Button type="submit" size={"icon"}  className="rounded-full bg-background text-foreground hover:bg-secondary">
+        <TbSearch size={16}/>
       </Button>
     </form>
   );

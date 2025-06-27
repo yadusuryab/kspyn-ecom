@@ -38,6 +38,7 @@ export default function OrderDetailsForm({
     isPaid,
     paidAt,
     isDelivered,
+    paymentResult,
     deliveredAt,
     expectedDeliveryDate,
   } = order;
@@ -77,6 +78,8 @@ export default function OrderDetailsForm({
           <CardContent className="p-4 gap-4">
             <h2 className="text-xl pb-4">Payment Method</h2>
             <p>{paymentMethod}</p>
+            <span>{paymentMethod=='Online'&& paymentResult?.id?.toString()}</span>
+            <span>{paymentMethod=='COD Advance' && `Paid ${shippingPrice}`}</span>
             {isPaid ? (
               <Badge>Paid at {formatDateTime(paidAt!).dateTime}</Badge>
             ) : (
@@ -165,6 +168,13 @@ export default function OrderDetailsForm({
               >
                 Pay Order
               </Link>
+            )}
+            {isAdmin && !isPaid && paymentMethod === "COD Advance" && (
+              
+              <ActionButton
+                caption="Mark as paid"
+                action={() => updateOrderToPaid(order._id)}
+              />
             )}
 
             {isAdmin && !isPaid && paymentMethod === "Cash On Delivery" && (

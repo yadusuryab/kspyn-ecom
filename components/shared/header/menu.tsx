@@ -1,16 +1,17 @@
 import CartButton from './cart-button'
+import LanguageSwitcher from './language-switcher'
 import UserButton from './user-button'
 // import ThemeSwitcher from './theme-switcher'
-import LanguageSwitcher from './language-switcher'
+
 
 const Menu = ({ forAdmin = false }: { forAdmin?: boolean }) => {
 
   return (
     <div className='flex justify-end'>
       <nav className='md:flex gap-3 hidden w-full'>
-        <LanguageSwitcher />
-        {/* <ThemeSwitcher /> */}
-        <UserButton />
+      <LanguageSwitcher />
+            {/* <ThemeSwitcher /> */}
+            <UserButton />
         {forAdmin ? null : <CartButton />}
       </nav>
       <nav className='md:hidden flex items-center'>

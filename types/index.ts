@@ -78,7 +78,8 @@ export type IWebPageInput = z.infer<typeof WebPageInputSchema>
 export type ICarousel = z.infer<typeof CarouselSchema>
 export type ISettingInput = z.infer<typeof SettingInputSchema>
 export type ClientSetting = ISettingInput & {
-  currency: string
+  currency: string,
+
 }
 export type SiteLanguage = z.infer<typeof SiteLanguageSchema>
 export type SiteCurrency = z.infer<typeof SiteCurrencySchema>

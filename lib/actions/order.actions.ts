@@ -44,11 +44,16 @@ export const createOrder = async (clientSideCart: Cart) => {
         ).join('\n\n');
 
         // Format payment information
-        const paymentInfo = createdOrder.paymentResult ? 
-          `├─ Payment ID: ${createdOrder.paymentResult.id}
-           ├─ Status: ${createdOrder.paymentResult.status}
-           └─ Email: ${createdOrder.paymentResult.email_address}` :
-          '└─ Payment not yet processed';
+       // In your createOrder function, update the paymentInfo section
+const paymentInfo = createdOrder.paymentResult?.id ? 
+  `├─ UPI Transaction ID: ${createdOrder.paymentResult.id}
+   ├─ Status: ${createdOrder.paymentResult.status || 'COMPLETED'}
+   └─ Email: ${createdOrder.paymentResult.email_address}` :
+  createdOrder.paymentResult ? 
+  `├─ Payment ID: ${createdOrder.paymentResult.id}
+   ├─ Status: ${createdOrder.paymentResult.status}
+   └─ Email: ${createdOrder.paymentResult.email_address}` :
+  '└─ Payment not yet processed'
 
         // Format shipping information
         const shippingInfo = `🏠 Shipping Address:
@@ -306,6 +311,7 @@ export async function createPayPalOrder(orderId: string) {
         email_address: '',
         status: '',
         pricePaid: '0',
+        // transactionId :'0'
       }
       await order.save()
       return {
@@ -345,6 +351,7 @@ export async function approvePayPalOrder(
       email_address: captureData.payer.email_address,
       pricePaid:
         captureData.purchase_units[0]?.payments?.captures[0]?.amount?.value,
+        // transactionId:''
     }
     await order.save()
     await sendPurchaseReceipt({ order })
@@ -620,3 +627,45 @@ async function getTopSalesCategories(date: DateRange, limit = 5) {
 
   return result
 }
+
+// export async function updateOrderToPaidViaUpi(
+//   orderId: string,
+//   transactionId: string,
+//   email: string,
+//   amount:string
+// ) {
+//   try {
+//     await connectToDatabase()
+//     const order = await Order.findById(orderId).populate<{
+//       user: { email: string; name: string }
+//     }>('user', 'name email')
+    
+//     if (!order) throw new Error('Order not found')
+//     if (order.isPaid) throw new Error('Order is already paid')
+    
+//     order.isPaid = true
+//     order.paidAt = new Date()
+//     order.paymentResult = {
+//       id: transactionId,
+//       status: 'COMPLETED',
+//       email_address: email,
+//       pricePaid: amount,
+//       transactionId: transactionId,
+//     }
+    
+//     await order.save()
+    
+//     if (!process.env.MONGODB_URI?.startsWith('mongodb://localhost')) {
+//       await updateProductStock(order._id)
+//     }
+    
+//     if (order.user.email) {
+//       await sendPurchaseReceipt({ order })
+//     }
+    
+//     revalidatePath(`/account/orders/${orderId}`)
+//     return { success: true, message: 'Order paid successfully via UPI' }
+//   } catch (err) {
+//     return { success: false, message: formatError(err) }
+//   }
+// }

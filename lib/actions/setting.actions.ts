@@ -30,6 +30,7 @@ export const getSetting = async (): Promise<ISettingInput> => {
 export const updateSetting = async (newSetting: ISettingInput) => {
   try {
     await connectToDatabase()
+    console.log(newSetting)
     const updatedSetting = await Setting.findOneAndUpdate({}, newSetting, {
       upsert: true,
       new: true,

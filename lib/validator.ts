@@ -116,6 +116,7 @@ export const OrderInputSchema = z.object({
       status: z.string(),
       email_address: z.string(),
       pricePaid: z.string(),
+      // transactionId:z.coerce.string()
     })
     .optional(),
   itemsPrice: Price('Items price'),
@@ -276,6 +277,9 @@ export const SettingInputSchema = z.object({
     url: z.string().min(1, 'Url is required'),
     email: z.string().min(1, 'Email is required'),
     phone: z.string().min(1, 'Phone is required'),
+    upiId: z.string()
+    .regex(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+$/, 'Invalid UPI ID format (e.g., name@upi)')
+    .optional(),
     author: z.string().min(1, 'Author is required'),
     copyright: z.string().min(1, 'Copyright is required'),
     address: z.string().min(1, 'Address is required'),

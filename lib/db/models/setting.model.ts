@@ -42,6 +42,7 @@ const settingSchema = new Schema<ISetting>(
       email: { type: String, required: true, default: 'admin@example.com' },
       phone: { type: String, required: true, default: '+1 (123) 456-7890' },
       author: { type: String, required: true, default: 'Next Ecommerce' },
+      upiId: { type: String, default: '',required:true},
       copyright: {
         type: String,
         required: true,

@@ -116,6 +116,12 @@ export default function OrderDetailsForm({
             )}
              {!isPaid && paymentMethod === 'Online' && (
              <UpiQrForm  priceInCents={Math.round(order.totalPrice * 100)}
+             paymentMethod={paymentMethod}
+             orderId={order._id}/>
+            )}
+            {!isPaid && paymentMethod === 'COD Advance' && (
+             <UpiQrForm  priceInCents={Math.round(order.shippingPrice * 100)}
+             paymentMethod={paymentMethod}
              orderId={order._id}/>
             )}
 
