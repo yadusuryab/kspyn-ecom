@@ -4,7 +4,7 @@
 import Link from 'next/link'
 import useIsMounted from '@/hooks/use-is-mounted'
 import useShowSidebar from '@/hooks/use-cart-sidebar'
-import { cn } from '@/lib/utils'
+// import { cn } from '@/lib/utils'
 import useCartStore from '@/hooks/use-cart-store'
 import { useLocale } from 'next-intl'
 import { getDirection } from '@/i18n-config'
@@ -14,9 +14,9 @@ import { IconShoppingBag } from '@tabler/icons-react'
 export default function CartButton() {
   const isMounted = useIsMounted()
   const {
-    cart: { items },
+    cart: { },
   } = useCartStore()
-  const cartItemsCount = items.reduce((a, c) => a + c.quantity, 0)
+  // const cartItemsCount = items.reduce((a, c) => a + c.quantity, 0)
   const showSidebar = useShowSidebar()
   // const t = useTranslations()
 
@@ -28,15 +28,15 @@ export default function CartButton() {
         <IconShoppingBag size={20}/>
         {isMounted && (
           <span
-            className={cn(
-              ` px-2  text-primary text-base font-bold absolute ${
-                getDirection(locale) === 'rtl' ? 'right-[5px]' : '-right-[2px]'
-              } top-[-4px] z-10`,
-              cartItemsCount >= 10 && 'text-sm px-0 p-[1px]',
-              cartItemsCount == 0 &&'hidden'
-            )}
+            // className={cn(
+            //   ` px-2  text-primary text-base font-bold absolute ${
+            //     getDirection(locale) === 'rtl' ? 'right-[5px]' : '-right-[2px]'
+            //   } top-[-4px] z-10`,
+            //   cartItemsCount >= 10 && 'text-sm px-0 p-[1px]',
+            //   cartItemsCount == 0 &&'hidden'
+            // )}
           >
-            {cartItemsCount}
+            {/* {cartItemsCount} */}
           </span>
         )}
         
