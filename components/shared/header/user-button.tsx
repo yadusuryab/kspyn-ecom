@@ -11,7 +11,8 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { SignOut } from '@/lib/actions/user.actions'
 import { cn } from '@/lib/utils'
-import { ChevronDownIcon } from 'lucide-react'
+import { IconUserCircle } from '@tabler/icons-react'
+// import { ChevronDownIcon } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 
@@ -22,16 +23,17 @@ export default async function UserButton() {
     <div className='flex gap-2 items-center'>
       <DropdownMenu>
         <DropdownMenuTrigger className='header-button' asChild>
-          <Button className='flex items-center' variant={'ghost'}>
-            <div className='flex flex-col text-xs text-left'>
+          {/* <Button className='flex items-center' variant={'ghost'}> */}
+            <div className='flex items-center text-sm gap-[7px] text-left'>
               <span>
-                {t('Header.Hello')},{' '}
-                {session ? session.user.name : t('Header.sign in')}
+                <IconUserCircle size={20}/>
+                {/* {t('Header.Hello')},{' '} */}
+              
               </span>
-              <span className='font-bold'>{t('Header.Account & Orders')}</span>
+              {/* <span className='font-bold'>  {session ? session.user.name : t('Header.sign in')}</span> */}
             </div>
-            <ChevronDownIcon />
-          </Button>
+            {/* <ChevronDownIcon /> */}
+          {/* </Button> */}
         </DropdownMenuTrigger>
         {session ? (
           <DropdownMenuContent className='w-56' align='end' forceMount>

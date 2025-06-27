@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
-import { X, ChevronRight, UserCircle, MenuIcon } from 'lucide-react'
+// import { X, ChevronRight,  } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { SignOut } from '@/lib/actions/user.actions'
 import {
@@ -15,6 +15,7 @@ import {
 import { auth } from '@/auth'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { getDirection } from '@/i18n-config'
+import { IconMenu,IconUserCircle,IconX,IconChevronRight } from '@tabler/icons-react'
 
 type SidebarProps = {
   categories: string[]
@@ -30,7 +31,7 @@ export default async function Sidebar({ categories }: SidebarProps) {
     <div className="flex items-center justify-between text-foreground">
       <DrawerHeader>
         <DrawerTitle className="flex items-center">
-          <UserCircle className="h-6 w-6 mr-2" />
+          <IconUserCircle className="h-6 w-6 mr-2" />
           {session ? (
             <DrawerClose asChild>
               <Link href="/account">
@@ -53,7 +54,7 @@ export default async function Sidebar({ categories }: SidebarProps) {
       </DrawerHeader>
       <DrawerClose asChild>
         <Button variant="ghost" size="icon" className="mr-2">
-          <X className="h-5 w-5" />
+          <IconX className="h-5 w-5" />
           <span className="sr-only">Close</span>
         </Button>
       </DrawerClose>
@@ -75,7 +76,7 @@ export default async function Sidebar({ categories }: SidebarProps) {
               className="flex items-center justify-between py-3 px-4 hover:bg-secondary transition-colors"
             >
               <span>{category}</span>
-              <ChevronRight className="h-4 w-4" />
+              <IconChevronRight className="h-4 w-4" />
             </Link>
           </DrawerClose>
         ))}
@@ -127,15 +128,15 @@ export default async function Sidebar({ categories }: SidebarProps) {
   )
 
   return (
-    <Drawer direction={direction === 'rtl' ? 'right' : 'left'}>
+    <Drawer direction={direction === 'rtl' ? 'left' : 'right'}>
       <DrawerTrigger>
-        <Button variant="ghost">
-          <MenuIcon />
-          {t('Header.All')}
-        </Button>
+        {/* <Button variant="ghost"> */}
+          <IconMenu size={20}/>
+          {/* {t('Header.All')} */}
+        {/* </Button> */}
       </DrawerTrigger>
-      <DrawerContent className="w-[350px] mt-0 top-0">
-        <div className="flex flex-col h-full">
+      <DrawerContent className=" mt-0 top-0">
+        <div className="flex flex-col h-full ">
           {renderUserSection()}
           {renderCategorySection()}
           {renderHelpSection()}

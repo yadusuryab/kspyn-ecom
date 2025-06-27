@@ -2,7 +2,6 @@ import BrowsingHistoryList from '@/components/shared/browsing-history-list'
 import { HomeCard } from '@/components/shared/home/home-card'
 import { HomeCarousel } from '@/components/shared/home/home-carousel'
 import ProductSlider from '@/components/shared/product/product-slider'
-// import { Card, CardContent } from '@/components/ui/card'
 
 import {
   getProductsForCard,
@@ -29,9 +28,11 @@ export default async function HomePage() {
   const bestSellers = await getProductsForCard({
     tag: 'best-seller',
   })
+
   const cards = [
     {
       title: t('Categories to explore'),
+      variant: 'grid',
       link: {
         text: t('See More'),
         href: '/search',
@@ -44,6 +45,7 @@ export default async function HomePage() {
     },
     {
       title: t('Explore New Arrivals'),
+      variant: 'hero',
       items: newArrivals,
       link: {
         text: t('View All'),
@@ -52,6 +54,7 @@ export default async function HomePage() {
     },
     {
       title: t('Discover Best Sellers'),
+      variant: 'banner',
       items: bestSellers,
       link: {
         text: t('View All'),
@@ -60,6 +63,7 @@ export default async function HomePage() {
     },
     {
       title: t('Featured Products'),
+      variant: 'hero',
       items: featureds,
       link: {
         text: t('Shop Now'),
@@ -71,18 +75,16 @@ export default async function HomePage() {
   return (
     <>
       <HomeCarousel items={carousels} />
-      <div className='md:p-4 md:space-y-4 bg-border p-4'>
+      <div className='md:px-[52px] md:space-y-4 px-[24px] mt-[90px]'>
         <HomeCard cards={cards} />
-       
-            <ProductSlider title={t("Today's Deals")} products={todaysDeals} />
-        
-       
-            <ProductSlider
-              title={t('Best Selling Products')}
-              products={bestSellingProducts}
-              hideDetails
-            />
-          
+
+        <ProductSlider title={t("Today's Deals")} products={todaysDeals} />
+
+        <ProductSlider
+          title={t('Best Selling Products')}
+          products={bestSellingProducts}
+          hideDetails
+        />
       </div>
 
       <div className='p-4 bg-background'>

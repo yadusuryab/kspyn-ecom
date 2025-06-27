@@ -1201,10 +1201,10 @@ We also provide helpful resources such as order tracking, product guides, and FA
       name: 'Best Sellers',
       href: '/search?tag=best-seller',
     },
-    {
-      name: 'Browsing History',
-      href: '/#browsing-history',
-    },
+   
+  ],
+  helpMenus: [
+    
     {
       name: 'Customer Service',
       href: '/page/customer-service',
@@ -1217,6 +1217,12 @@ We also provide helpful resources such as order tracking, product guides, and FA
       name: 'Help',
       href: '/page/help',
     },
+
+    {
+      name: 'Browsing History',
+      href: '/#browsing-history',
+    },
+    
   ],
   carousels: [
     {

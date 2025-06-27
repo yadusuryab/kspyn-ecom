@@ -16,14 +16,24 @@ import { Link, usePathname } from '@/i18n/routing'
 import useSettingStore from '@/hooks/use-setting-store'
 import { i18n } from '@/i18n-config'
 import { setCurrencyOnServer } from '@/lib/actions/setting.actions'
-import { ChevronDownIcon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+// import { Button } from '@/components/ui/button'
+import { 
+  IconLanguage,
+  IconLanguageHiragana,
+  IconLanguageKatakana,
+  IconChevronDown
+} from '@tabler/icons-react';
 
-export default function LanguageSwitcher() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function LanguageSwitcher({className}:{className?:any}) {
   const { locales } = i18n
   const locale = useLocale()
   const pathname = usePathname()
-
+  const localeIcons = {
+    'en-US': IconLanguage,
+    'ml': IconLanguageHiragana,
+    'ar': IconLanguageKatakana,
+  };
   const {
     setting: { availableCurrencies, currency },
     setCurrency,
@@ -34,29 +44,35 @@ export default function LanguageSwitcher() {
   }
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className='header-button h-[41px]'>
-        <Button className='flex items-center  gap-1' variant={'ghost'}>
-          <span className='text-base font-bold text-muted-foreground'>
-            {locales.find((l) => l.code === locale)?.icon}
+      <DropdownMenuTrigger className={className}>
+        <div className='flex items-center gap-1 text-xs' >
+          <span className='text-xs font-bold text-foreground'>
+          {React.createElement(localeIcons[locale as keyof typeof localeIcons], { 
+         size:14,
+          })}
           </span>
           {locale.toUpperCase().slice(0, 2)}
-          <ChevronDownIcon />
-        </Button>
+          <IconChevronDown  size={14}/>
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-56'>
         <DropdownMenuLabel>Language</DropdownMenuLabel>
         <DropdownMenuRadioGroup value={locale}>
-          {locales?.map((c) => (
-            <DropdownMenuRadioItem key={c.name} value={c.code}>
-              <Link
-                className='w-full flex items-center gap-1'
-                href={pathname}
-                locale={c.code}
-              >
-                <span className='text-lg'>{c.icon}</span> {c.name}
-              </Link>
-            </DropdownMenuRadioItem>
-          ))}
+        {locales?.map((c) => {
+            const IconComponent = localeIcons[c.code as keyof typeof localeIcons];
+            return (
+              <DropdownMenuRadioItem key={c.name} value={c.code}>
+                <Link
+                  className='w-full flex items-center gap-2'
+                  href={pathname}
+                  locale={c.code}
+                >
+                  {IconComponent && <IconComponent size={18} />}
+                  {c.name}
+                </Link>
+              </DropdownMenuRadioItem>
+            );
+          })}
         </DropdownMenuRadioGroup>
 
         <DropdownMenuSeparator />

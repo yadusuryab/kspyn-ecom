@@ -1,5 +1,5 @@
 import CartButton from './cart-button'
-import LanguageSwitcher from './language-switcher'
+//import LanguageSwitcher from './language-switcher'
 import UserButton from './user-button'
 // import ThemeSwitcher from './theme-switcher'
 
@@ -9,12 +9,13 @@ const Menu = ({ forAdmin = false }: { forAdmin?: boolean }) => {
   return (
     <div className='flex justify-end'>
       <nav className='md:flex gap-3 hidden w-full'>
-      <LanguageSwitcher />
+      {/* <LanguageSwitcher /> */}
             {/* <ThemeSwitcher /> */}
+            {forAdmin ? null : <CartButton />}
             <UserButton />
-        {forAdmin ? null : <CartButton />}
+      
       </nav>
-      <nav className='md:hidden flex items-center'>
+      <nav className='md:hidden flex items-center   gap-3'>
         {/* <Sheet>
           <SheetTrigger className='align-middle header-button'>
             <EllipsisVertical className='h-6 w-6' />
@@ -32,7 +33,7 @@ const Menu = ({ forAdmin = false }: { forAdmin?: boolean }) => {
             <CartButton />
           </SheetContent>
         </Sheet> */}
-        {/* <CartButton /> */}
+        <CartButton />
         <UserButton />
       </nav>
     </div>
