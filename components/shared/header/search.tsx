@@ -32,16 +32,11 @@ export default function Search() {
   return (
     <div className="w-full">
       {/* Compact Search Trigger */}
-      <div className="md:hidden flex items-center">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="rounded-full bg-muted text-foreground hover:bg-secondary transition-all duration-200"
-          onClick={toggleSearch}
-        >
-          <TbSearch size={20} />
-        </Button>
-      </div>
+      {/* <div className="md:hidden flex items-center"  onClick={toggleSearch}> */}
+       
+          <TbSearch size={20} className="md:hidden flex items-center" onClick={toggleSearch}/>
+
+      {/* </div> */}
 
       <div
         className="hidden md:flex  items-center  bg-secondary rounded-full h-[38px] gap-2 w-fit cursor-pointer group"

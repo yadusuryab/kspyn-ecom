@@ -11,6 +11,7 @@ const Menu = ({ forAdmin = false }: { forAdmin?: boolean }) => {
       <nav className='md:flex gap-3 hidden w-full'>
       {/* <LanguageSwitcher /> */}
             {/* <ThemeSwitcher /> */}
+            
             {forAdmin ? null : <CartButton />}
             <UserButton />
       
