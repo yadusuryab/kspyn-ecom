@@ -1,80 +1,74 @@
 'use client'
 
 import * as React from 'react'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel'
-import ProductCard from './product-card'
+import { useRef } from 'react'
+// import ProductCard from './product-card'
 import { IProduct } from '@/lib/db/models/product.model'
+import { Button } from '@/components/ui/button'
+import { IconChevronLeft, IconChevronRight } from '@tabler/icons-react'
+import ProductCardMinimal from './product-card-simple'
 
 export default function ProductSlider({
   title,
   products,
-  hideDetails = false,
+  // hideDetails = false,
 }: {
   title?: string
   products: IProduct[]
   hideDetails?: boolean
 }) {
-  return (
-    <div className="w-full bg-background space-y-6 p-2 mt-4">
-      {title && (
-        <h2 className="text-2xl font-bold tracking-tight px-4 md:px-6">
-          {title}
-        </h2>
-      )}
-      
-      <Carousel
-        opts={{
-          align: 'start',
-          slidesToScroll: 'auto',
-        }}
-        className="w-full relative group"
-      >
-        <CarouselContent className="px-4 md:px-6">
-          {products?.map((product) => (
-            <CarouselItem
-              key={product.slug}
-              className={cn(
-                'basis-full', // Default mobile size
-                hideDetails 
-                  ? 'sm:basis-1/3 md:basis-1/4 lg:basis-1/6' 
-                  : 'sm:basis-1/2 md:basis-1/3 lg:basis-1/4'
-              )}
-            >
-              <div className="p-1 h-full"> {/* Padding for perfect spacing */}
-                <ProductCard
-                  hideDetails={hideDetails}
-                  hideAddToCart
-                  hideBorder
-                  product={product}
-                  // Ensure equal height
-                />
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
+  const scrollRef = useRef<HTMLDivElement>(null)
 
-        {/* Navigation with hover effect */}
-        <CarouselPrevious 
-          className="left-2 opacity-0 group-hover:opacity-100 transition-opacity"
-          variant="ghost"
-          size="sm"
-        />
-        <CarouselNext 
-          className="right-2 opacity-0 group-hover:opacity-100 transition-opacity"
-          variant="ghost"
-          size="sm"
-        />
-      </Carousel>
+  const scroll = (direction: 'left' | 'right') => {
+    if (!scrollRef.current) return
+    const scrollAmount = 300
+    scrollRef.current.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth',
+    })
+  }
+
+  return (
+    <div className="w-full space-y-6 mt-[90px]">
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 sm:px-8">
+        {title && (
+          <h2 className="text-2xl font-medium tracking-tighter">{title}</h2>
+        )}
+        <div className="flex gap-2">
+          <Button
+            onClick={() => scroll('left')}
+            className="rounded-full p-2 hover:bg-gray-100"
+            variant="secondary"
+            size="icon"
+          >
+            <IconChevronLeft className="w-5 h-5" />
+          </Button>
+          <Button
+            onClick={() => scroll('right')}
+            className="rounded-full"
+            variant="secondary"
+            size="icon"
+          >
+            <IconChevronRight className="w-5 h-5" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Scrollable Card Row */}
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto px-4 pb-4 scrollbar-hide"
+      >
+        {products.map((product) => (
+          <div
+            key={product.slug}
+            className="flex-shrink-0 w-[300px] h-full"
+          >
+           <ProductCardMinimal product={product} />
+          </div>
+        ))}
+      </div>
     </div>
   )
-}
-
-function cn(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
 }
