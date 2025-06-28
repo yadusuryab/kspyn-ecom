@@ -1,5 +1,4 @@
 'use client'
-import { ChevronUp } from 'lucide-react'
 import Link from 'next/link'
 // import Image from 'next/image'
 import { useEffect, useState } from 'react' // Add these imports
