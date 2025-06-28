@@ -7,9 +7,12 @@ import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 import { getSetting } from '@/lib/actions/setting.actions'
 import { cookies } from 'next/headers'
+import {Inter} from 'next/font/google'
 
 
-
+const inter=    Inter({
+  subsets:['latin'],
+})
 
 export async function generateMetadata() {
   const {
@@ -51,7 +54,7 @@ export default async function AppLayout({
       suppressHydrationWarning
     >
       <body
-        className={`min-h-screen antialiased`}
+        className={`min-h-screen antialiased ${inter.className}`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ClientProviders setting={{ ...setting, currency }}>
