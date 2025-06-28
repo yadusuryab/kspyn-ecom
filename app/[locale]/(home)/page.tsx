@@ -1,6 +1,7 @@
 import BrowsingHistoryList from '@/components/shared/browsing-history-list'
 import { HomeCard } from '@/components/shared/home/home-card'
 import { HomeCarousel } from '@/components/shared/home/home-carousel'
+import CategoryScroll from '@/components/shared/home/shop-by-style'
 import ProductSlider from '@/components/shared/product/product-slider'
 
 import {
@@ -30,19 +31,19 @@ export default async function HomePage() {
   })
 
   const cards = [
-    {
-      title: t('Categories to explore'),
-      variant: 'grid',
-      link: {
-        text: t('See More'),
-        href: '/search',
-      },
-      items: categories?.map((category) => ({
-        name: category,
-        image: `/images/${toSlug(category)}.png`,
-        href: `/search?category=${category}`,
-      })),
-    },
+    // {
+    //   title: t('Categories to explore'),
+    //   variant: 'grid',
+    //   link: {
+    //     text: t('See More'),
+    //     href: '/search',
+    //   },
+    //   items: categories?.map((category) => ({
+    //     name: category,
+    //     image: `/images/${toSlug(category)}.png`,
+    //     href: `/search?category=${category}`,
+    //   })),
+    // },
     {
       title: t('Explore New Arrivals'),
       variant: 'hero',
@@ -76,8 +77,18 @@ export default async function HomePage() {
     <>
       <HomeCarousel items={carousels} />
       <div className='md:px-[52px] md:space-y-4 px-[24px] mt-[90px]'>
-        <HomeCard cards={cards} />
-
+        
+        <CategoryScroll
+  title={t('Categories to explore')}
+  variant="scroll"
+  // link={{ text: t('See More'), href: '/search' }}
+  items={categories?.map((category) => ({
+    name: category,
+    image: `/images/${toSlug(category)}.png`,
+    href: `/search?category=${category}`,
+  }))}
+/>
+<HomeCard cards={cards} />
         <ProductSlider title={t("Today's Deals")} products={todaysDeals} />
 
         <ProductSlider
