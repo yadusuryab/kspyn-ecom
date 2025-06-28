@@ -1,23 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, KeyboardEvent } from "react";
 import { TbSearch } from "react-icons/tb";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export default function Search() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
 
   const popularTags = [
     { name: "New Arrivals", slug: "new-arrivals" },
     { name: "Featured", slug: "featured-products" },
     { name: "Best Sellers", slug: "best-sellers" },
     { name: "Today's Deals", slug: "todays-deals" },
-    // { name: "air force 1", slug: "air-force-1" },
-    // { name: "sneakers men", slug: "sneakers-men" },
-    // { name: "running shoes", slug: "running-shoes" },
-    // { name: "jordan", slug: "jordan" },
   ];
 
   const toggleSearch = () => {
@@ -29,17 +27,36 @@ export default function Search() {
     }
   };
 
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setIsExpanded(false);
+      document.body.style.overflow = "";
+    }
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handlePopularTagClick = (slug: string) => {
+    router.push(`/search?tag=${slug}`);
+    setIsExpanded(false);
+    document.body.style.overflow = "";
+  };
+
   return (
     <div className="w-full">
-      {/* Compact Search Trigger */}
-      {/* <div className="md:hidden flex items-center"  onClick={toggleSearch}> */}
-       
-          <TbSearch size={20} className="md:hidden flex items-center" onClick={toggleSearch}/>
-
-      {/* </div> */}
+      <TbSearch 
+        size={20} 
+        className="md:hidden flex items-center" 
+        onClick={toggleSearch}
+      />
 
       <div
-        className="hidden md:flex  items-center  bg-secondary rounded-full h-[38px] gap-2 w-fit cursor-pointer group"
+        className="hidden md:flex items-center bg-secondary rounded-full h-[38px] gap-2 w-fit cursor-pointer group"
         onClick={toggleSearch}
       >
         <motion.div
@@ -49,16 +66,16 @@ export default function Search() {
         >
           <TbSearch
             size={20}
-            className="text-foreground transition-colors duration-200 "
+            className="text-foreground transition-colors duration-200"
           />
         </motion.div>
         <input
-          className="bg-secondary outline-none w-40 placeholder:font-medium placeholder:text-lg font-bold pr-2 text-secondary-foreground text-sm cursor-pointer transition-all duration-200 "
+          className="bg-secondary outline-none w-40 placeholder:font-medium placeholder:text-lg font-bold pr-2 text-secondary-foreground text-sm cursor-pointer transition-all duration-200"
           placeholder="Search"
+          readOnly
         />
       </div>
 
-      {/* Expanded Search with Animation */}
       <AnimatePresence>
         {isExpanded && (
           <motion.div
@@ -82,10 +99,13 @@ export default function Search() {
                   </div>
                   <input
                     autoFocus
-                    className="w-full bg-secondary rounded-full py-3 pl-10 pr-4 outline-none transition-all duration-200 rounded-full"
+                    className="w-full bg-secondary rounded-full py-3 pl-10 pr-4 outline-none transition-all duration-200"
                     placeholder="Search"
                     name="q"
                     type="search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={handleKeyDown}
                   />
                 </motion.div>
               </div>
@@ -115,13 +135,12 @@ export default function Search() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 + index * 0.05 }}
                   >
-                    <Link
-                      href={`/search?tag=${tag.slug}`}
+                    <button
+                      onClick={() => handlePopularTagClick(tag.slug)}
                       className="px-4 py-2 bg-secondary rounded-full text-sm hover:bg-secondary/70 transition-all duration-200 hover:scale-105"
-                      onClick={toggleSearch}
                     >
                       {tag.name}
-                    </Link>
+                    </button>
                   </motion.div>
                 ))}
               </div>
