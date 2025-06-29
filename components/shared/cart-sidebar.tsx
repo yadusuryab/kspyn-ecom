@@ -35,7 +35,7 @@ export default function CartSidebar() {
 
   const locale = useLocale()
   return (
-    <div className='w-32 overflow-y-auto'>
+    <div className='w-32 overflow-x-hidden overflow-y-auto'>
       <div
         className={`w-32 fixed  h-full ${
           getDirection(locale) === 'rtl' ? 'border-r' : 'border-l'

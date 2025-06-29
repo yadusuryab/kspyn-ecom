@@ -7,16 +7,16 @@ import UserButton from './user-button'
 const Menu = ({ forAdmin = false }: { forAdmin?: boolean }) => {
 
   return (
-    <div className='flex justify-end'>
-      <nav className='md:flex gap-3 hidden w-full'>
+    <div className='flex '>
+      <div className='md:flex gap-3 hidden w-full'>
       {/* <LanguageSwitcher /> */}
             {/* <ThemeSwitcher /> */}
             
             {forAdmin ? null : <CartButton />}
             <UserButton />
       
-      </nav>
-      <nav className='md:hidden flex items-center   gap-3'>
+      </div>
+      <div className='md:hidden flex items-center   gap-3'>
         {/* <Sheet>
           <SheetTrigger className='align-middle header-button'>
             <EllipsisVertical className='h-6 w-6' />
@@ -36,7 +36,7 @@ const Menu = ({ forAdmin = false }: { forAdmin?: boolean }) => {
         </Sheet> */}
         <CartButton />
         <UserButton />
-      </nav>
+      </div>
     </div>
   )
 }

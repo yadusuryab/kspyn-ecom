@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getAllCategories } from "@/lib/actions/product.actions";
-import Menu from "./menu";
+// import Menu from "./menu";
 import Search from "./search";
 import data from "@/lib/data";
 import Sidebar from "./sidebar";
@@ -11,6 +11,9 @@ import { getTranslations } from "next-intl/server";
 import { cn } from "@/lib/utils";
 import LanguageSwitcher from "./language-switcher";
 // import UserButton from "./user-button";
+import CartButton from './cart-button'
+//import LanguageSwitcher from './language-switcher'
+import UserButton from './user-button'
 
 export default async function Header() {
   const categories = await getAllCategories();
@@ -19,12 +22,12 @@ export default async function Header() {
   return (
     <header className="">
       <div
-        className={`md:flex justify-between w-full px-[52px] items-center bg-secondary hidden font-semibold text-base h-[34px] text-foreground`}
+        className={`md:flex justify-between w-full md:px-[52px] px-[24px] items-center bg-secondary hidden font-semibold text-base h-[34px] text-foreground`}
       >
         <div>
           <h2 className="font-bold italic">ks</h2>
         </div>
-        <div className="flex divide-x divide-foreground items-center">
+        <div className="flex divide-x divide-foreground whitespace-nowrap items-center">
           <LanguageSwitcher className="px-[12px]" />
           {data.helpMenus?.map((menu) => (
             <Link
@@ -56,9 +59,10 @@ export default async function Header() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 overflow-hidden">
          <Search/>
-          <Menu />
+         <CartButton />
+         <UserButton />
           <Sidebar categories={categories} />
         </div>
       </div>

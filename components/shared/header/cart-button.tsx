@@ -3,11 +3,11 @@
 
 import Link from 'next/link'
 import useIsMounted from '@/hooks/use-is-mounted'
-import useShowSidebar from '@/hooks/use-cart-sidebar'
+// import useShowSidebar from '@/hooks/use-cart-sidebar'
 // import { cn } from '@/lib/utils'
 import useCartStore from '@/hooks/use-cart-store'
-import { useLocale } from 'next-intl'
-import { getDirection } from '@/i18n-config'
+// import { useLocale } from 'next-intl'
+// import { getDirection } from '@/i18n-config'
 // import { Button } from '@/components/ui/button'
 import { IconShoppingBag } from '@tabler/icons-react'
 
@@ -17,12 +17,12 @@ export default function CartButton() {
     cart: { },
   } = useCartStore()
   // const cartItemsCount = items.reduce((a, c) => a + c.quantity, 0)
-  const showSidebar = useShowSidebar()
+  // const showSidebar = useShowSidebar()
   // const t = useTranslations()
 
-  const locale = useLocale()
+  // const locale = useLocale()
   return (
-    <Link href='/cart' className='flex items-center'>
+    <Link href='/cart' className='flex items-center  '>
       
       {/* <Button className='relative' variant={'ghost'} size={'icon'}> */}
         <IconShoppingBag size={20}/>
@@ -42,7 +42,7 @@ export default function CartButton() {
         
         {/* {t('Header.Cart')} */}
 
-        {showSidebar && (
+        {/* {showSidebar && (
           <div
             className={`absolute top-[20px] ${
               getDirection(locale) === 'rtl'
@@ -50,7 +50,7 @@ export default function CartButton() {
                 : 'right-[-16px] rotate-[-90deg]'
             }  z-10   w-0 h-0 border-l-[7px] border-r-[7px] border-b-[8px] border-transparent border-b-background`}
           ></div>
-        )}
+        )} */}
       {/* </Button> */}
     </Link>
   )
