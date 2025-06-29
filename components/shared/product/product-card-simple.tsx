@@ -51,7 +51,7 @@ export default function ProductCardMinimal({ product }: { product: IProduct }) {
           {(discountPercent > 0 || product.tags?.includes('todays-deal')) && (
             <div className="absolute top-2 right-2 flex flex-col gap-1 text-xs font-bold z-10">
               {product.tags?.includes('todays-deal') && (
-                <span className="bg-red-600 text-white px-2 py-0.5 rounded">
+                <span className="bg-red-600 text-white text-center px-2 py-0.5 rounded">
                   Deal
                 </span>
               )}

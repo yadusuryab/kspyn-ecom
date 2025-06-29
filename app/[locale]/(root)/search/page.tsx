@@ -67,18 +67,19 @@ export default async function SearchPage(props: {
   const t = await getTranslations()
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container relative mx-auto  py-6">
       {/* Results Header */}
-      <div className="mb-6 p-4 bg-card rounded-lg border">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="mb-4 ">
+        <div className="sticky top-0 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:px-0 px-[24px]">
           <div className="text-sm">
             {data.totalProducts === 0 ? (
               t('Search.No')
             ) : (
-              <>
-                <span className="font-medium">{data.from}-{data.to}</span> {t('Search.of')}{' '}
-                <span className="font-medium">{data.totalProducts}</span> {t('Search.results')}
-              </>
+              <div className='flex flex-col gap-[1px]'>
+
+                <span className="font-semibold text-2xl">{t('Search.Results')} ({data.totalProducts})</span> 
+                <span className="font-medium text-muted-foreground">{data.from}-{data.to} Displayed</span>
+              </div>
             )}
             
             {(q !== 'all' && q !== '') ||
@@ -134,11 +135,11 @@ export default async function SearchPage(props: {
       </div>
 
       {/* Main Content */}
-      <div className="grid md:grid-cols-5 gap-6">
+      <div className="grid  md:grid-cols-5 gap-6">
         {/* Filters Sidebar */}
         <div className="md:col-span-1">
           <CollapsibleOnMobile title={t('Search.Filters')}>
-            <div className="space-y-6 p-4 bg-card rounded-lg border">
+            <div className="space-y-6 ">
               {/* Categories */}
               <div>
                 <h3 className="font-bold mb-3">{t('Search.Department')}</h3>
@@ -261,12 +262,12 @@ export default async function SearchPage(props: {
 
         {/* Products Grid */}
         <div className="md:col-span-4">
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <h2 className="text-xl font-bold">{t('Search.Results')}</h2>
             <p className="text-sm text-muted-foreground">
               {t('Search.Check each product page for other buying options')}
             </p>
-          </div>
+          </div> */}
 
           {data.products.length === 0 ? (
             <div className="py-12 text-center">
@@ -274,7 +275,7 @@ export default async function SearchPage(props: {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {data.products?.map((product: IProduct) => (
                   <ProductCard key={product._id} product={product} />
                 ))}

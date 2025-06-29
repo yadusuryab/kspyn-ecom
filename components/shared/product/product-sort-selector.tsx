@@ -4,7 +4,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  // SelectValue,
 } from '@/components/ui/select'
 import { getFilterUrl } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
@@ -33,11 +33,12 @@ export default function ProductSortSelector({
         router.push(getFilterUrl({ params, sort: v }))
       }}
       value={sort}
+    
     >
-      <SelectTrigger>
-        <SelectValue>
-          Sort By: {sortOrders.find((s) => s.value === sort)!.name}
-        </SelectValue>
+      <SelectTrigger className='w-fit border-none shadow-none text-md text-muted-foreground'>
+        
+          <span className='text-foreground'>Sort By:&nbsp;</span> {sortOrders.find((s) => s.value === sort)!.name}
+       
       </SelectTrigger>
 
       <SelectContent>

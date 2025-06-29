@@ -2,102 +2,102 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import { Star } from 'lucide-react'
 import { IProduct } from '@/lib/db/models/product.model'
-import { generateId, round2 } from '@/lib/utils'
-import Rating from './rating'
-import ProductPrice from './product-price'
-import AddToCart from './add-to-cart'
-import ImageHover from './image-hover'
+import { formatNumber, round2 } from '@/lib/utils'
+import useSettingStore from '@/hooks/use-setting-store'
+import { useFormatter } from 'next-intl'
+import { useState } from 'react'
 
-interface ProductCardProps {
-  product: IProduct
-  className?: string
-  hideAddToCart?: boolean
-}
+export default function ProductCardMinimal({ product }: { product: IProduct }) {
+  const [hovered, setHovered] = useState(false)
+  const { getCurrency } = useSettingStore()
+  const currency = getCurrency()
+  const format = useFormatter()
 
-const ProductCard = ({ product, className = '', hideAddToCart = true }: ProductCardProps) => {
-  const isDeal = product.tags?.includes('todays-deal')
-  const discount = product.listPrice && product.listPrice > product.price
+  const price = round2(currency.convertRate * product.price)
+  const listPrice = round2(currency.convertRate * product.listPrice || 0)
+  const discountPercent = listPrice > 0 ? Math.round(100 - (price / listPrice) * 100) : 0
+
+  const formattedPrice = format.number(price, {
+    style: 'currency',
+    currency: currency.code,
+    currencyDisplay: 'narrowSymbol',
+  })
+
+  const formattedListPrice = format.number(listPrice, {
+    style: 'currency',
+    currency: currency.code,
+    currencyDisplay: 'narrowSymbol',
+  })
 
   return (
-    <div className={`flex flex-col w-full ${className}`}>
-      <Link href={`/product/${product.slug}`} className="relative block aspect-[3/4] w-full overflow-hidden group rounded-sm bg-[#f3f4f6]">
-        {product.images.length > 1 ? (
-          <ImageHover
-            src={product.images[0]}
-            hoverSrc={product.images[1]}
-            alt={product.name}
-          />
-        ) : (
+    <Link href={`/product/${product.slug}`} className="block group">
+      <div className="flex flex-col w-full">
+        {/* Image */}
+        <div
+          className="relative aspect-square w-full bg-[#f3f4f6] rounded-sm overflow-hidden"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
           <Image
-            src={product.images[0]}
+            src={hovered && product.images[1] ? product.images[1] : product.images[0]}
             alt={product.name}
             fill
             className="object-contain transition-transform duration-300 group-hover:scale-105"
           />
-        )}
 
-        {(isDeal || discount) && (
-          <div className="absolute top-2 right-2 z-10 flex flex-col items-end gap-1">
-            {isDeal && (
-              <span className="bg-red-500 text-white text-[10px] font-semibold px-2 py-0.5 rounded-sm">
-                Deal
-              </span>
-            )}
-            {discount && (
-              <span className="bg-black text-white text-[10px] font-semibold px-2 py-0.5 rounded-sm">
-                {Math.round(100 - (product.price / product.listPrice) * 100)}% off
-              </span>
+          {/* Overlay: discount */}
+          {(discountPercent > 0 || product.tags?.includes('todays-deal')) && (
+            <div className="absolute top-2 right-2 flex flex-col gap-1 text-xs font-bold z-10">
+              {product.tags?.includes('todays-deal') && (
+                <span className="bg-red-600 text-white text-center px-2 py-0.5 rounded">
+                  Deal
+                </span>
+              )}
+              {discountPercent > 0 && (
+                <span className="bg-black text-white px-2 py-0.5 rounded">
+                  {discountPercent}% OFF
+                </span>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Details */}
+        <div className="pt-3 px-1 space-y-1.5">
+          {/* Title */}
+          <h3 className="text-sm font-medium text-foreground leading-snug line-clamp-2">
+            {product.name}
+          </h3>
+
+          {/* Rating */}
+          <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <div className="flex gap-0.5 text-yellow-500">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  size={12}
+                  className={
+                    i < Math.round(product.avgRating)
+                      ? 'fill-yellow-400'
+                      : 'text-gray-300'
+                  }
+                />
+              ))}
+            </div>
+            <span>({formatNumber(product.numReviews)})</span>
+          </div>
+
+          {/* Price */}
+          <div className="flex items-baseline gap-2">
+            <p className="text-sm font-semibold text-foreground">{formattedPrice}</p>
+            {listPrice > 0 && (
+              <p className="text-xs text-muted-foreground line-through">{formattedListPrice}</p>
             )}
           </div>
-        )}
-      </Link>
-
-      <div className="pt-3 px-1.5 flex flex-col gap-1 text-left">
-        {/* Name */}
-        <Link href={`/product/${product.slug}`} className="text-[14px] font-medium text-foreground leading-tight line-clamp-2">
-          {product.name}
-        </Link>
-
-        {/* Price */}
-        <ProductPrice
-          price={product.price}
-          listPrice={product.listPrice}
-          isDeal={isDeal}
-          forListing
-        />
-
-        {/* Rating */}
-        <div className="flex items-center gap-1 text-xs text-muted-foreground">
-          <Rating rating={product.avgRating} size={4} />
-          <span className="text-xs">({product.numReviews})</span>
         </div>
       </div>
-
-      {/* Optional Add to Cart */}
-      {!hideAddToCart && (
-        <div className="pt-2 px-1.5">
-          <AddToCart
-            minimal
-            item={{
-              clientId: generateId(),
-              product: product._id,
-              size: product.sizes[0],
-              color: product.colors[0],
-              countInStock: product.countInStock,
-              name: product.name,
-              slug: product.slug,
-              category: product.category,
-              price: round2(product.price),
-              quantity: 1,
-              image: product.images[0],
-            }}
-          />
-        </div>
-      )}
-    </div>
+    </Link>
   )
 }
-
-export default ProductCard
